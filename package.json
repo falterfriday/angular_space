@@ -13,7 +13,7 @@
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "mongoose": "^4.5.9",
+    "mongoose": "^4.5.10",
     "ng-parallax": "^1.0.1",
     "parallax": "0.0.0",
     "path": "^0.12.7"
