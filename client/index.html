@@ -1,64 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  ng-app="app">
 <head>
-	<title>Welcome</title>
+	<title>Leaving Home</title>
 </head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="angular/angular.js"></script>
-    <script src="angular-route/angular-route.js"></script>
-    <script src="angular-cookies/angular-cookies.js"></script>
-    <script src="angular-animate/angular-animate.js"></script>
-    <script src="angular-aria/angular-aria.js"></script>
-    <script src="angular-messages/angular-messages.js"></script>
-    <link rel="stylesheet" href="angular-material/angular-material.min.css">
-    <script src="angular-material/angular-material.js"></script>
-    <script src="./assets/app.js"></script>
-    <script src="./assets/factories/photoFactory.js"></script>
-    <script src="./assets/controllers/photoController.js"></script>
-    <link rel="stylesheet" href="./main.css" media="screen" charset="utf-8">
-<body>
+	<script src="angular-route/angular-route.js"></script>
+	<script src="angular-cookies/angular-cookies.js"></script>
+	<script src="angular-animate/angular-animate.js"></script>
+	<script src="angular-aria/angular-aria.js"></script>
+	<script src="angular-messages/angular-messages.js"></script>
+	<link rel="stylesheet" href="angular-material/angular-material.min.css">
+	<script src="ng-simple-parallax/js/ngParallax.min.js"></script>
+	<script src="angular-material/angular-material.js"></script>
+	<script src="./assets/app.js"></script>
+	<script src="./assets/factories/mainFactory.js"></script>
+	<script src="./assets/controllers/mainController.js"></script>
+	<script src="./assets/controllers/nasaController.js"></script>
+	<link rel="stylesheet" href="./main.css" media="screen" charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+<body ng-controller="mainController" >
 <!-- Header -->
-<div ng-controller="photoController" layout="column" style="height: 500px;" ng-cloak="" class="sidenavdemoCustomSidenav" ng-app="app">
-    <div class="header" layout="row">
-		<md-button ng-click="toggleLeft()" class="md-raised">Toggle Sidenav</md-button>
-        <section class="center">
-			<h1>Leaving Home</h1>
-		</section>
-    </div>
-
-<!-- Sidebar -->
-<section layout="row" flex="">
-<md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
-  <md-toolbar>
-	  <md-button ng-click="toggleLeft()" class="md-raised">Close</md-button>
-  </md-toolbar>
-  <md-content layout-margin="">
-    <ul>
-		<li>Number 1</li>
-		<li>Number 2</li>
-		<li>Number 3</li>
-		<li>Number 4</li>
-		<li>Number 5</li>
-    </ul>
-  </md-content>
-</md-sidenav>
-<md-content flex="" layout-padding="">
-  <div layout="column" layout-align="top center">
-    <p>
-      Developers can also disable the backdrop of the sidenav.<br>
-      This will disable the functionality to click outside to close the sidenav.
-    </p>
-	<!-- Main -->
-	<div class="main" ng-view>
-	</div>
-
-    <div>
-      <!-- <md-button ng-click="toggleLeft()" class="md-raised">Toggle Sidenav</md-button> -->
-    </div>
+<div class="header">
+  <div id="toggle">
+    <a ng-click="toggleLeft()" class="md-raised">Navigation</a>
   </div>
-</md-content>
-</section>
+	<h1>Leaving Home</h1>
+    <a href="#/login"><h3>Login/Register</h3></a>
 </div>
+<div ng-view>
+</div>
+<!-- - - - - - - - - - - - - - - - - Left Slider - - - - - - - - - - -  -->
+<div layout="column" ng-cloak="">
+  <section layout="row" flex="">
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+      <md-toolbar>
+          <div id="toggle">
+            <a ng-click="toggleLeft()" class="md-raised">Navigation</a>
+          </div>
+      </md-toolbar>
+      <md-content layout-margin="">
+        <ul>
+          <a href="#/"><li>Home</li></a>
+          <hr>
+          <li>Placeholder Text</li>
+          <hr>
+          <li>Placeholder Text</li>
+          <hr>
+          <li>Placeholder Text</li>
+          <hr>
+          <li>Placeholder Text</li>
+          <hr>
+        </ul>
+      </md-content>
+    </md-sidenav>
+  </section>
+</div>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
 
 </body>
 </html>
