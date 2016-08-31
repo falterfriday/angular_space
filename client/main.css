@@ -1,49 +1,135 @@
+body {
+	font-family: Roboto;
+	background-color: #000000;
+}
 .header {
-  /*text-align: center;*/
-  border-bottom: solid black 1px;
-  padding: 0.3em 0;
-  background-color: white;
+	border-bottom: solid #262626 1px;
+	padding: 0.3rem 0;
+	background-color: black;
+	text-align: center;
+	position: fixed;
+	width: 100%;
+	z-index: 3;
+}
+#toggle a {
+	display: inline-block;
+	position: fixed;
+	left: 0;
+	margin: 0.6rem 0.6rem;
+	color: #ffffff;
+	border: solid 1px #262626;
+	background-color: #343434;
+	border-radius: 0.2rem;
+	padding: 0.1rem 0.3rem;
 }
 h1 {
-  margin: 0;
-  font-weight:200;
-  font-size: 3em;
-  letter-spacing: 0.07em;
+	margin: 0;
+	font-weight:300;
+	font-size: 2rem;
+	color: lightgray;
+	letter-spacing: 1rem;
+	display: inline-block;
 }
-.sidebar {
+h3 {
+	position: fixed;
+	display: inline-block;
+	right: 0;
+	color: #ffffff;
+	margin: 0.6rem 0.6rem;
+	font-weight: 400;
+	font-size: 1rem;
+	border: solid 1px #262626;
+	background-color: #343434;
+	padding: 0.1rem 0.3rem;
+	border-radius: 0.2rem;
+}
+.top_container {
+	height: 34rem;
+	border: solid #0d0d0d 1px;
+	text-align: center;
+	position: relative;
+	top: 3em;
+
+}
+#top_photo {
+	position: relative;
+	background: url(../assets/images/horsehead_nebula.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position:50%;
+	box-sizing: border-box;
+	height: 100%;
+	padding: 0 15px;
+}
+.source_container {
+	width: 100%;
+	position: absolute;
+	margin-top: -2rem;
+	text-align: center;
+	z-index: 1;
+}
+#nasa_container {
+	vertical-align: top;
+	height: 10.5rem;
+	width: 12.5rem;
+	display: inline-block;
+}
+#reddit_container {
+  height: 11rem;
+  width: 11rem;
   display: inline-block;
-  width: 20%;
-  height: 1000px;
-  float: left;
-  background-color: #e0e0eb;
-  border-right: solid black 1px;
+  margin-left: 3rem;
 }
-.photo {
-  display: inline-block;
-  height: auto;
-  width: 18%;
-  border: solid black 1px;
-  vertical-align: top;
+.source_container img {
+  height:100%;
+  width: 100%;
 }
-.md-raised {
-  float: left;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+.quote_container {
+	height: 34rem;
+	text-align: center;
+	padding: 11rem 0 0 0;
+	/*position: relative;*/
+	background-color: #000000;
+	font-size: 1rem;
 }
+.quote {
+	color: white;
+}
+.quote span {
+	font-size: 2rem;
+	font-weight: 100;
+	letter-spacing: 0.3rem;
+}
+.quote p {
+	text-align: right;
+	margin: 2rem 2rem 0 0;
+}
+/***************sidebar***************/
+
 md-toolbar:not(.md-menu-toolbar) {
-  background-color: #e0e0eb;
+	background-color: #000000;
+	min-height: 3.06rem;
+	border-bottom: solid #262626 1px;
 }
-md-sidenav {
-  width: 15em;
+.md-sidenav-left, md-sidenav {
+	background-color: rgba(0, 0, 0, 0.75);
+}
+md-sidenav md-content {
+	background-color: rgba(0, 0, 0, 0);
 }
 ul {
-  margin: 0;
-  padding: 0;
+	padding: 0;
+	margin: 0;
 }
 li {
-  line-height: 2.5em;
+	color: #ffffff;
+	line-height: 2rem;
+	letter-spacing: 0.6rem;
 }
-
-img {
-  width: 100%;
-  height: auto;
+hr {
+	margin: 0;
+	border-color: #343434;
+}
+a {
+	text-decoration: none;
 }
