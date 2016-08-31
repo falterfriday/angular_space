@@ -4,44 +4,46 @@ body {
 }
 .header {
 	border-bottom: solid #262626 1px;
-	padding: 0.3rem 0;
+	padding: 0.7rem 0;
 	background-color: black;
 	text-align: center;
 	position: fixed;
 	width: 100%;
 	z-index: 3;
 }
-#toggle a {
+#toggle {
 	display: inline-block;
 	position: fixed;
 	left: 0;
-	margin: 0.6rem 0.6rem;
+	margin: 0 0 0 0.6rem;
 	color: #ffffff;
 	border: solid 1px #262626;
 	background-color: #343434;
 	border-radius: 0.2rem;
 	padding: 0.1rem 0.3rem;
+	text-transform: none;
 }
 h1 {
 	margin: 0;
 	font-weight:300;
-	font-size: 2rem;
+	font-size: 2.2rem;
 	color: lightgray;
 	letter-spacing: 1rem;
 	display: inline-block;
 }
-h3 {
+#login_reg_button {
 	position: fixed;
 	display: inline-block;
 	right: 0;
 	color: #ffffff;
-	margin: 0.6rem 0.6rem;
+	margin: 0 0.6rem 0 0;
 	font-weight: 400;
 	font-size: 1rem;
 	border: solid 1px #262626;
 	background-color: #343434;
 	padding: 0.1rem 0.3rem;
 	border-radius: 0.2rem;
+	text-transform: none;
 }
 .top_container {
 	height: 34rem;
@@ -103,6 +105,13 @@ h3 {
 .quote p {
 	text-align: right;
 	margin: 2rem 2rem 0 0;
+}
+/***************login***************/
+.registration {
+	border-right: solid black 1px;
+}
+md-input-container {
+	margin: 0 auto;
 }
 /***************sidebar***************/
 
