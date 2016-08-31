@@ -1,0 +1,57 @@
+<md-dialog aria-label="Login">
+	<form ng-cloak>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Please Log In</h2>
+					<span flex></span>
+			<md-button class="md-icon-button" ng-click="cancel()">
+				<md-icon class="material-icons" aria-label="Close dialog">cancel</md-icon>
+			</md-button>
+		</div>
+		</md-toolbar>
+		<md-dialog-content layout="row">
+<!-- - - - - - - - - - - - - -REGISTRATION- - - - - - - - - -  -->
+			<div class="md-dialog-content registration" layout="column">
+				<md-input-container>
+					<label>First Name</label>
+					<input ng-model="newUser.first_name">
+				</md-input-container>
+				<md-input-container>
+					<label>Last Name</label>
+					<input ng-model="newUser.last_name">
+				</md-input-container>
+				<md-input-container>
+					<label>Email</label>
+					<input ng-model="newUser.email">
+				</md-input-container>
+				<md-input-container>
+					<label>Password</label>
+					<input type="password" ng-model="newUser.password">
+				</md-input-container>
+				<md-input-container>
+					<label>Confirm Password</label>
+					<input type="password" ng-model="newUser.pw_conf">
+				</md-input-container>
+				<md-dialog-actions layout="row">
+					<md-button ng-click="registerUser()" md-autofocus>Register</md-button>
+				</md-dialog-actions>
+			</div>
+<!-- - - - - - - - - - - - - - LOGIN- - - - - - - - - - - - - -  -->
+			<div class="md-dialog-content" layout="column">
+				<md-input-container>
+					<label>Email</label>
+					<input ng-model="login.username">
+				</md-input-container>
+				<md-input-container>
+					<label>Password</label>
+					<input type="password" ng-model="login.password">
+				</md-input-container>
+				<md-dialog-actions layout="row">
+					<span flex></span>
+					<md-button ng-click="loginUser()">Login</md-button>
+				</md-dialog-actions>
+			</div>
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+		</md-dialog-content>
+	</form>
+</md-dialog>
