@@ -14,23 +14,23 @@
 			<div class="md-dialog-content registration" layout="column">
 				<md-input-container>
 					<label>First Name</label>
-					<input ng-model="newUser.first_name">
+					<input required ng-model="newUser.first_name">
 				</md-input-container>
 				<md-input-container>
 					<label>Last Name</label>
-					<input ng-model="newUser.last_name">
+					<input required ng-model="newUser.last_name">
 				</md-input-container>
 				<md-input-container>
 					<label>Email</label>
-					<input ng-model="newUser.email">
+					<input required ng-model="newUser.email">
 				</md-input-container>
 				<md-input-container>
 					<label>Password</label>
-					<input type="password" ng-model="newUser.password">
+					<input required type="password" ng-model="newUser.password">
 				</md-input-container>
 				<md-input-container>
 					<label>Confirm Password</label>
-					<input type="password" ng-model="newUser.pw_conf">
+					<input required type="password" ng-model="newUser.pw_conf">
 				</md-input-container>
 				<md-dialog-actions layout="row">
 					<md-button ng-click="registerUser()" md-autofocus>Register</md-button>
@@ -40,11 +40,11 @@
 			<div class="md-dialog-content" layout="column">
 				<md-input-container>
 					<label>Email</label>
-					<input ng-model="login.username">
+					<input required ng-model="login.username">
 				</md-input-container>
 				<md-input-container>
 					<label>Password</label>
-					<input type="password" ng-model="login.password">
+					<input required type="password" ng-model="login.password">
 				</md-input-container>
 				<md-dialog-actions layout="row">
 					<span flex></span>
