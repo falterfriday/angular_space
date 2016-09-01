@@ -10,7 +10,7 @@ var mongoose=require('mongoose'),
 
     reg= new RegExp( ".js$", "i" ),
 
-    dbURI= 'mongodb://localhost/sheet_db';
+    dbURI= 'mongodb://localhost/space';
 
 mongoose.connect( dbURI );
 
