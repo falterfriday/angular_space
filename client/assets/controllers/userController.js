@@ -24,16 +24,15 @@ app.controller('userController', ['userFactory', '$scope', '$location', '$cookie
       $scope.login = {};
     };
     $scope.registerUser = function(){
-      console.log($scope.newUser);
-      $scope.newUser = {};
+      console.log(" uC newUser = ", $scope.newUser);
       userFactory.register($scope.newUser, function(rtnData){
         if(rtnData.error){
           console.log(rtnData.error);
           $scope.errors = rtnData;
           $scope.newUser = {};
         } else {
-			$cookies.putObject('user',{first_name:retData.first_name, last_name:retData.last_name});
-			$location.url('/');
+    			$cookies.putObject('user',{first_name:rtnData.first_name, last_name:rtnData.last_name});
+          $location.url('/');
         }
 		});
     };
