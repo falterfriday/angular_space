@@ -1,0 +1,36 @@
+<div class="top_container">
+  <div id="reddit_main_banner">
+    <div id="reddit_logo_container">
+      <img src="../assets/img/reddit_logo2.png" alt="" />
+      <h4>"Not all those who wander are lost."</h4>
+      <p>- J.R.R. Tolkien: <i>All That is Gold Does Not Glitter</i></p>
+    </div>
+  </div>
+</div>
+<div class="photo_container" ng-cloak>
+  <md-content class="md-padding" layout="row">
+    <md-card flex-xs flex-gt-xs="50" layout="column" class="photo_card" ng-repeat="photo in photos">
+      <md-card-content layout="column" layout-align="space-between">
+          <img ng-src="{{photo.data.url}}" class="md-card-image" alt="{{photo.explanation}}" />
+        <md-card-title>
+          <md-card-title-text>
+            <!-- <span class="ms-headline">{{photo.date | date : "longdate"}}</span> -->
+            <span class="md-subhead">{{photo.copyright}}</span>
+            <span class="md-subhead">Title: <br> {{photo.data.title}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-icon-button" aria-label="Favorite">
+            <md-icon class="material-icons" ng-style="{color: 'red'}">favorite</md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Settings">
+            <md-icon class="material-icons" ng-style="{color: 'white'}">menu</md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Favorite">
+            <md-icon class="material-icons" ng-style="{color: 'white'}">reply</md-icon>
+          </md-button>
+        </md-card-actions>
+      </md-card-content>
+    </md-card>
+</md-content>
+</div>
