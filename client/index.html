@@ -19,6 +19,7 @@
 	<script src="./assets/controllers/mainController.js"></script>
 	<script src="./assets/controllers/nasaController.js"></script>
 	<script src="./assets/controllers/userController.js"></script>
+	<script src="./assets/controllers/redditController.js"></script>
 	<link rel="stylesheet" href="./main.css" media="screen" charset="utf-8">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 </head>
@@ -26,15 +27,13 @@
 
 <!-- - - - - - - - - - - - - - - - -Header- - - - - - - - - - - - - - - -->
 	<div class="header">
-		<md-button id="toggle" ng-click="toggleLeft()" class="md-raised">Navigation</md-button>
+		<md-button id="toggle" class="md-icon-button" ng-click="toggleLeft()" class="md-raised">
+			<md-icon class="material-icons" ng-style="{color: 'white'}" aria-label="Close dialog">menu</md-icon>
+		</md-button>
 		<h1>Leaving Home</h1>
 		<md-button id="login_reg_button" ng-controller="userController" ng-click="showLoginDialog($event)">
 		Login/Registration
 		</md-button>
-	</div>
-
-<!-- - - - - - - - - - - - - - - - -Partial Loading Div- - - - - - - - - - -->
-	<div ng-view>
 	</div>
 
 <!-- - - - - - - - - - - - - - - - - Left Slider - - - - - - - - - - -  -->
@@ -42,28 +41,40 @@
 		<section layout="row" flex="">
 			<md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
 				<md-toolbar>
-					<div id="toggle">
-						<a ng-click="toggleLeft()" class="md-raised">Navigation</a>
-					</div>
+					<md-button class="md-icon-button" ng-click="toggleLeft()">
+						<md-icon class="material-icons" aria-label="Close dialog">close</md-icon>
+					</md-button>
 				</md-toolbar>
 				<md-content layout-margin="">
 					<ul>
-						<a href="#/">
-							<li>Home</li>
-						</a>
-							<hr>
-						<li>Placeholder Text</li>
-							<hr>
-						<li>Placeholder Text</li>
-							<hr>
-						<li>Placeholder Text</li>
-							<hr>
-						<li>Placeholder Text</li>
-							<hr>
+						<li>
+							<md-button class="md-icon-button" ng-click="toggleLeft()" ng-href="#/">
+								<md-icon class="material-icons" ng-style="{color: 'white'}" aria-label="home">home</md-icon>
+							</md-button>
+							<a ng-click="toggleLeft()" ng-href="#/">Home</a>
+						</li>
+						<hr>
+						<li>
+							<md-button class="md-icon-button" ng-href="#/profile" ng-click="toggleLeft()">
+								<md-icon class="material-icons" ng-style="{color: 'lightblue'}" aria-label="profile">account_box</md-icon>
+							</md-button>
+							<a ng-href="#/profile" ng-click="toggleLeft()">Profile</a>
+						</li>
+						<hr>
+						<li>
+							<md-button class="md-icon-button" ng-href="#/favorites" ng-click="toggleLeft()">
+								<md-icon class="material-icons" ng-style="{color: 'red'}" aria-label="profile">favorite_border</md-icon>
+							</md-button>
+							<a ng-href="#/favorites" ng-click="toggleLeft()">Favorites</a>
+						</li>
+						<hr>
 					</ul>
 				</md-content>
 			</md-sidenav>
 		</section>
+	</div>
+<!-- - - - - - - - - - - - - - - - -Partial Loading Div- - - - - - - - - - -->
+	<div ng-view>
 	</div>
 </body>
 </html>
