@@ -1,14 +1,36 @@
-<div class="container photos">
-	<div class="photo">
-	<img src="{{photo.url}}" alt="{{photo.explanation}}" />
-	</div>
-	<div class="photo">
-	<img src="{{photo2.url}}" alt="{{photo2.explanation}}" />
-	</div>
-	<div class="photo">
-	<img src="{{photo3.url}}" alt="{{photo3.explanation}}" />
-	</div>
-	<div class="photo">
-		<a href="#"><img src="{{photo4.url}}" alt="{{photo4.explanation}}"/></a>
-	</div>
+<div class="top_container">
+  <div id="nasa_main_banner">
+    <div id="nasa_logo_container">
+      <img src="../assets/img/nasa_logo.png" alt="" />
+      <h4>"To reach for new heights and reveal the unknown so that what we do and learn will benefit all humankind."</h4>
+      <p>- NASA Vision Statement</p>
+    </div>
+  </div>
+</div>
+<div class="photo_container" ng-cloak>
+  <md-content class="md-padding" layout="row">
+    <md-card flex-xs flex-gt-xs="50" layout="column" class="photo_card" ng-repeat="photo in returnedDataArr | orderBy: 'photo.date' ">
+      <md-card-content layout="column" layout-align="space-between">
+          <img ng-src="{{photo.url}}" class="md-card-image" alt="{{photo.explanation}}" />
+        <md-card-title>
+          <md-card-title-text>
+            <span class="ms-headline">{{photo.date | date : "longdate"}}</span>
+            <span class="md-subhead">{{photo.copyright}}</span>
+            <span class="md-subhead">Title: <br> {{photo.title}}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-icon-button" aria-label="Favorite">
+            <md-icon class="material-icons" ng-style="{color: 'red'}">favorite</md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Settings">
+            <md-icon class="material-icons" ng-style="{color: 'white'}">menu</md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Favorite">
+            <md-icon class="material-icons" ng-style="{color: 'white'}">reply</md-icon>
+          </md-button>
+        </md-card-actions>
+      </md-card-content>
+    </md-card>
+</md-content>
 </div>
