@@ -9,6 +9,10 @@ $routeProvider
 		templateUrl: 'partials/nasaPartial.html',
 		controller: 'nasaController'
 	})
+	.when('/reddit', {
+		templateUrl: 'partials/redditPartial.html',
+		controller: 'redditController'
+	})
 	.otherwise({
 			redirectTo: '/'
 		});
