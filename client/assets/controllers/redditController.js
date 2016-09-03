@@ -3,8 +3,6 @@ app.controller('redditController', ['mainFactory', '$scope', '$location', '$cook
   $scope.getPhotos = function(){
     $http.get('https://www.reddit.com/r/spaceporn/.json?').then(function(returnedData){
       $scope.photos = [];
-      // console.log(returnedData.data.data.children);
-      // $scope.photos = returnedData.data.data.children;
       for (var x = 0; x <= 10; x++){
         $scope.photos.push(returnedData.data.data.children[x]);
       }
