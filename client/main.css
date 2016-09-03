@@ -32,7 +32,7 @@ h1 {
 	letter-spacing: 1rem;
 	display: inline-block;
 }
-#login_reg_button {
+.login_reg_button {
 	position: fixed;
 	display: inline-block;
 	right: 0;
@@ -148,7 +148,6 @@ a {
 }
 
 /************NASA PARTIAL************/
-
 #nasa_main_banner {
 	position: relative;
 	background: url(../assets/img/space_tree.jpg);
@@ -229,4 +228,30 @@ md-card-actions {
 #reddit_main_banner p {
 	float: right;
 	margin-right: 20%;
+}
+/***************PROFILE PAGE***************/
+#profile_main_banner {
+	position: relative;
+	background: url(../assets/img/shuttle_launch.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	/*background-position:50%;*/
+	box-sizing: border-box;
+	height: 100%;
+	padding: 0 15px;
+}
+#profile_main_banner md-icon {
+	height: 10.5rem;
+	width: 12rem;
+	margin-top: 8rem;
+	font-size: 12rem;
+}
+#profile_main_banner h4 {
+	margin-top: 3rem;
+	font-size: 3rem;
+	font-weight: 300;
+	letter-spacing: 0.5rem;
+}
+md-tabs-wrapper {
+	background-color: rgba(0, 0, 0, 0.5);
 }
