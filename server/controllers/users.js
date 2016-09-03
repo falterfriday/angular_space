@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 var User = mongoose.model('User');
-
+var Favorite = mongoose.model('Favorite');
 
 function UserController(){
   this.createUser = function(req,res){
@@ -19,6 +20,75 @@ function UserController(){
       }
       else {
         res.json(user);
+      }
+    });
+  };
+  this.loginUser = function(req,res){
+    User.findOne({email:req.body.email.toLowerCase()}, function(err, user){
+      if(err){
+        res.json(err);
+      } else {
+        if(user === null){
+          res.json({error:"invalid login credentials"});
+        } else {
+          if(bcrypt.compareSync(req.body.password, user.password)){
+            console.log("user data = ", user);
+            res.json(user);
+          } else {
+            res.json({error: "incorrect password"});
+          }
+        }
+      }
+    });
+  };
+  this.addFavorite = function(req,res){
+    console.log("req.body = ", req.body);
+    User.findOne({_id:req.body.userId}, function(err, user){
+      var favorite = Favorite({
+        url:req.body.url,
+        hdUrl:req.body.hdurl,
+        title:req.body.title,
+        date_posted:req.body.date,
+        photographer:req.body.copyright,
+        // _user:req.body.userId
+      });
+      user._favorites.push(favorite);
+      favorite.save(function(err){
+        if(err){
+          console.log('problem saving favorite');
+        } else {
+          user.save({validateBeforeSave:false}, function(err){
+            if(err){
+              res.json(err);
+            } else {
+              console.log('favorite successfully saved');
+              res.json(favorite);
+            }
+          });
+        }
+      });
+
+    });
+  };
+  this.getUserInfo = function(req,res){
+    User.find({_id:req.body.id}, function(err, user){
+      if(err){
+        console.log("error retrieving user");
+        res.json(err);
+      } else {
+        res.json(user);
+      }
+    });
+  };
+  this.getUserFavorites = function(req,res){
+    console.log(req.body);
+    User.find({_id:req.body.id}).populate('_favorites').exec(function(err, favorites){
+      if(err){
+        console.log('error retrieving favorites');
+        res.json(err);
+      } else {
+        console.log('favorites retrieved');
+        res.json(favorites);
       }
     });
   };
