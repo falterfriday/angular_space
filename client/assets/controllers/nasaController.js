@@ -1,4 +1,4 @@
-app.controller('nasaController', ['mainFactory', '$scope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', function(mainFactory, $scope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http){
+app.controller('nasaController', ['mainFactory', 'userFactory','$scope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', function(mainFactory, userFactory, $scope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http){
 
 	$scope.getPhotos = function(){
 		$scope.apiUrl = [];
@@ -16,4 +16,13 @@ app.controller('nasaController', ['mainFactory', '$scope', '$location', '$cookie
 		}
 	};
 	$scope.getPhotos();
+
+	$scope.addFavorite = function(photoInfo){
+		$scope.favorite = photoInfo;
+		$scope.favorite.userId = $scope.user.id;
+		console.log("favorite = ", $scope.favorite);
+		userFactory.addFavorite($scope.favorite, function(returnedData){
+			console.log(returnedData);
+		});
+	};
 }]);
