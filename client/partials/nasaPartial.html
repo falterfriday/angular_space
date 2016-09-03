@@ -9,18 +9,18 @@
 </div>
 <div class="photo_container" ng-cloak>
   <md-content class="md-padding" layout="row">
-    <md-card flex-xs flex-gt-xs="50" layout="column" class="photo_card" ng-repeat="photo in returnedDataArr | orderBy: 'photo.date' ">
+    <md-card flex-xs flex-gt-xs="50" layout="column" class="photo_card" ng-repeat="photo in returnedDataArr | orderBy: 'date':true ">
       <md-card-content layout="column" layout-align="space-between">
           <img ng-src="{{photo.url}}" class="md-card-image" alt="{{photo.explanation}}" />
         <md-card-title>
           <md-card-title-text>
-            <span class="ms-headline">{{photo.date | date : "longdate"}}</span>
+            <span class="ms-headline">{{photo.date | date : 'longDate'}}</span>
             <span class="md-subhead">{{photo.copyright}}</span>
             <span class="md-subhead">Title: <br> {{photo.title}}</span>
           </md-card-title-text>
         </md-card-title>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button class="md-icon-button" aria-label="Favorite">
+          <md-button class="md-icon-button" aria-label="Favorite" ng-click="addFavorite(photo)">
             <md-icon class="material-icons" ng-style="{color: 'red'}">favorite</md-icon>
           </md-button>
           <md-button class="md-icon-button" aria-label="Settings">
