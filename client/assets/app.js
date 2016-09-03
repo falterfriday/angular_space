@@ -13,6 +13,10 @@ $routeProvider
 		templateUrl: 'partials/redditPartial.html',
 		controller: 'redditController'
 	})
+	.when('/profile/:id', {
+		templateUrl: 'partials/profilePartial.html',
+		controller: 'profileController'
+	})
 	.otherwise({
 			redirectTo: '/'
 		});
