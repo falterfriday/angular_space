@@ -9,13 +9,12 @@
 </div>
 <div class="photo_container" ng-cloak>
   <md-content class="md-padding" layout="row">
-    <md-card flex-xs flex-gt-xs="50" layout="column" class="photo_card" ng-repeat="photo in photos">
+    <md-card flex-xs flex-gt-xs="50" layout="column" class="photo_card" ng-repeat="photo in photos"  ng-if="photo.data.domain !== 'flickr.com' && photo.data.domain !== 'secure.flickr.com' " >
       <md-card-content layout="column" layout-align="space-between">
-          <img ng-src="{{photo.data.url}}" class="md-card-image" alt="{{photo.explanation}}" />
+          <img ng-src="{{photo.data.url}}" class="md-card-image" alt="{{photo.explanation}}"/>
         <md-card-title>
           <md-card-title-text>
-            <!-- <span class="ms-headline">{{photo.date | date : "longdate"}}</span> -->
-            <span class="md-subhead">{{photo.copyright}}</span>
+            <span class="ms-headline">From: <br> {{photo.data.domain}}</span>
             <span class="md-subhead">Title: <br> {{photo.data.title}}</span>
           </md-card-title-text>
         </md-card-title>
