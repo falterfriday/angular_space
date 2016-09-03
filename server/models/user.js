@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+var Schema = mongoose.Schema;
 
 var validateEmail = function(email){
   var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -44,9 +45,15 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "confirmation required"]
   },
+  _favorites: [{
+    type: Schema.Types.ObjectId, ref: 'Favorite'
+  }]
 }, {timestamps:true});
 
 UserSchema.pre('save', function(done){
+  if(!this.isNew){
+    return done();
+  }
   this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(8));
   this.pw_conf = '';
   done();
