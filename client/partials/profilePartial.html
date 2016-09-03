@@ -1,0 +1,67 @@
+<div class="top_container">
+	<div id="profile_main_banner">
+		<div id="profile_logo_container"><md-icon class="material-icons" aria-label="Close dialog" ng-style="{color: 'black'}">account_circle</md-icon>
+			<h4>{{user.first_name}} {{user.last_name}}</h4>
+		</div>
+	</div>
+</div>
+
+<md-tabs md-stretch-tabs="always" md-selected="data.selectedIndex">
+	<md-tab id="tab1" aria-controls="tab1-content">
+		Info
+	</md-tab>
+	<md-tab id="tab2" aria-controls="tab2-content">
+		Favorites
+	</md-tab>
+</md-tabs>
+<md-content flex md-scroll-y>
+	<ui-view layout="column" layout-fill layout-padding>
+		<ng-switch on="data.selectedIndex" class="tabpanel-container">
+			<div role="tabpanel"
+				id="tab1-content"
+				aria-labelledby="tab1"
+				ng-switch-when="0"
+				md-swipe-left="next()"
+				md-swipe-right="previous()"
+				layout="row" layout-align="center center">
+				<md-card flex-gt-sm="90" flex-gt-md="80">
+					<md-card-content>
+						<h2>Email: {{userInfo.email}}</h2>
+						<h4>Password: {{userInfo.password}}</h4> <!-- STILL HASHED AND SALTED -->
+						<h4>Account Created: {{userInfo.createdAt | date: 'longDate'}}</h4>
+					</md-card-content>
+				</md-card>
+			</div>
+<!-- - - - - - - - - - - - - FAVORITES TAB- - - - - - - - - - - -  -->
+			<div role="tabpanel"
+				id="tab2-content"
+				aria-labelledby="tab2"
+				ng-switch-when="1"
+				md-swipe-left="next()"
+				md-swipe-right="previous()"
+				layout="row" layout-align="center center">
+				<md-card flex>
+					<md-card-content>
+						<h2>Favorites</h2>
+						<md-list>
+							<md-item ng-repeat="favorite in userFavorites | orderBy: 'createdAt':true ">
+								<md-item-content>
+                  <div class="md-tile-left inset" hide-sm>
+                    <img src="{{favorite.url}}"/>
+                	</div>
+                  <div class="md-tile-content">
+                    <h3>{{favorite.title}}</h3>
+                    <h4>{{favorite.photographer}}</h4>
+                    <p><a href="{{favorite.hdUrl}}">HD Version</a></p>
+                  </div>
+                </md-item-content>
+                <md-divider md-inset hide-sm ng-if="!$last"></md-divider>
+                <md-divider hide-gt-sm ng-if="!$last"></md-divider>
+							</md-item>
+						</md-list>
+					</md-card-content>
+				</md-card>
+			</div>
+		</ng-switch>
+	</ui-view>
+</md-content>
