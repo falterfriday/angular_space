@@ -17,9 +17,6 @@ var FavoriteSchema = new mongoose.Schema({
   photographer: {
     type:String
   }
-  // _user: [{
-  //   type: Schema.Types.ObjectId, ref: 'User'
-  // }]
 }, {timestamps: true});
 
 var Favorite = mongoose.model('Favorite', FavoriteSchema);
