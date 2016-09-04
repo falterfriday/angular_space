@@ -8,10 +8,10 @@
   </div>
 </div>
 <div class="photo_container" ng-cloak>
-  <md-content class="md-padding" layout="row">
-    <md-card flex-xs flex-gt-xs="50" layout="column" class="photo_card" ng-repeat="photo in photos"  ng-if="photo.data.domain !== 'flickr.com' && photo.data.domain !== 'secure.flickr.com' " >
-      <md-card-content layout="column" layout-align="space-between">
-          <img ng-src="{{photo.data.url}}" class="md-card-image" alt="{{photo.explanation}}"/>
+  <md-content class="md-padding reddit_photo_card" layout="row">
+    <md-card flex-xs flex-gt-xs="50" layout="column" ng-repeat="photo in photos"  ng-if="photo.data.domain !== 'flickr.com' && photo.data.domain !== 'secure.flickr.com' " >
+      <md-card-content  layout="column" layout-align="space-between">
+          <img ng-src="{{photo.data.url}}" class="md-card-image" alt="{{photo.explanation}}" ng-click="showPhoto($event, photo.data)"/>
         <md-card-title>
           <md-card-title-text>
             <span class="ms-headline">From: <br> {{photo.data.domain}}</span>
@@ -19,8 +19,11 @@
           </md-card-title-text>
         </md-card-title>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button class="md-icon-button" aria-label="Favorite">
+          <md-button class="md-icon-button" aria-label="Favorite"  ng-if="user !== null" ng-click="addFavorite(photo)">
             <md-icon class="material-icons" ng-style="{color: 'red'}">favorite</md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Favorite" ng-if="user == null" ng-controller="userController" ng-click="showLoginDialog($event)">
+            <md-icon class="material-icons" ng-style="{color: 'gray'}">favorite</md-icon>
           </md-button>
           <md-button class="md-icon-button" aria-label="Settings">
             <md-icon class="material-icons" ng-style="{color: 'white'}">menu</md-icon>
