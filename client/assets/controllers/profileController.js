@@ -1,4 +1,12 @@
 app.controller('profileController', ['userFactory', '$scope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog', '$window', function(userFactory, $scope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog, $window){
+	if($cookies.getObject('user')){
+		$scope.user = $cookies.getObject('user');
+		console.log('current user = ', $scope.user);
+	} else {
+		$scope.user = null;
+		console.log('no current user data');
+		$location.url('/');
+	}
 
 	$scope.getUserFavorites = function(){
 		userFactory.getUserFavorites($scope.user, function(returnedData){
@@ -9,4 +17,30 @@ app.controller('profileController', ['userFactory', '$scope', '$location', '$coo
 		});
 	};
 	$scope.getUserFavorites();
+
+	//---------------------------OPEN PHOTO TAB---------------------------
+		$scope.showPhoto = function(ev, clickedPhoto) {
+			console.log("photo clicked");
+			console.log("linked content = ", clickedPhoto);
+	    $mdDialog.show({
+	      controller: DialogController,
+	      templateUrl: '../../partials/photoPartial.html',
+	      parent: angular.element(document.body),
+	      targetEvent: ev,
+	      clickOutsideToClose:true,
+	      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+	    });
+			function DialogController($scope, $mdDialog){
+				$scope.clickedPhoto = clickedPhoto;
+				$scope.hide = function() {
+					$mdDialog.hide();
+				};
+				$scope.cancel = function() {
+					$mdDialog.cancel();
+				};
+				$scope.answer = function(answer) {
+					$mdDialog.hide(answer);
+				};
+			}
+	  };
 }]);
