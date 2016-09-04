@@ -41,8 +41,7 @@ function UserController(){
       }
     });
   };
-  this.addFavorite = function(req,res){
-    console.log("req.body = ", req.body);
+  this.addNasaFavorite = function(req,res){
     User.findOne({_id:req.body.userId}, function(err, user){
       var favorite = Favorite({
         url:req.body.url,
@@ -50,7 +49,6 @@ function UserController(){
         title:req.body.title,
         date_posted:req.body.date,
         photographer:req.body.copyright,
-        // _user:req.body.userId
       });
       user._favorites.push(favorite);
       favorite.save(function(err){
@@ -67,7 +65,32 @@ function UserController(){
           });
         }
       });
-
+    });
+  };
+  this.addRedditFavorite = function(req,res){
+    User.findOne({_id:req.body.userId}, function(err, user){
+      var favorite = Favorite({
+        url:req.body.url,
+        hdUrl:req.body.preview.images[0].source.url,
+        title:req.body.title,
+        date_posted:req.body.created_utc,
+      });
+      console.log('favorite = ', favorite);
+      user._favorites.push(favorite);
+      favorite.save(function(err){
+        if(err){
+          console.log('problem saving favorite');
+        } else {
+          user.save({validateBeforeSave:false}, function(err){
+            if(err){
+              res.json(err);
+            } else {
+              console.log('favorite successfully saved');
+              res.json(favorite);
+            }
+          });
+        }
+      });
     });
   };
   this.getUserInfo = function(req,res){
