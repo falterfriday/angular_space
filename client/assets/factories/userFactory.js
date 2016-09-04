@@ -17,9 +17,15 @@ app.factory('userFactory', ['$http', function($http){
 				callback(returnedData.data);
 			});
 		};
-		this.addFavorite = function(favorite, callback){
+		this.addNasaFavorite = function(favorite, callback){
 			console.log("uF - favorite = ", favorite);
-			$http.post('/addFavorite', favorite).then(function(returnedData){
+			$http.post('/addNasaFavorite', favorite).then(function(returnedData){
+				callback(returnedData);
+			});
+		};
+		this.addRedditFavorite = function(favorite, callback){
+			console.log("uF - favorite = ", favorite);
+			$http.post('/addRedditFavorite', favorite).then(function(returnedData){
 				callback(returnedData);
 			});
 		};
