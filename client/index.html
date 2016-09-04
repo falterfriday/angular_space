@@ -58,11 +58,17 @@
 							<a ng-click="toggleLeft()" ng-href="#/">Home</a>
 						</li>
 						<hr>
-						<li>
+						<li ng-if="user !== null">
 							<md-button class="md-icon-button" ng-href="#/profile/{{user.id}}" ng-click="toggleLeft()">
 								<md-icon class="material-icons" ng-style="{color: 'lightblue'}" aria-label="profile">account_box</md-icon>
 							</md-button>
 							<a ng-href="#/profile/{{user.id}}" ng-click="toggleLeft()">Profile</a>
+						</li>
+						<li ng-if="user == null">
+							<md-button class="md-icon-button" ng-controller="userController" ng-click="showLoginDialog($event)">
+								<md-icon class="material-icons" ng-style="{color: 'lightblue'}" aria-label="profile">account_box</md-icon>
+							</md-button>
+							<a ng-controller="userController" ng-click="showLoginDialog($event)">Profile</a>
 						</li>
 						<hr>
 						<li>
