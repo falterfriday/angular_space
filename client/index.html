@@ -32,10 +32,10 @@
 			<md-icon class="material-icons" ng-style="{color: 'white'}" aria-label="Close dialog">menu</md-icon>
 		</md-button>
 		<h1>Leaving Home</h1>
-		<md-button class="login_reg_button" ng-controller="userController" ng-click="showLoginDialog($event)" ng-if="!user">
+		<md-button class="login_reg_button" ng-controller="userController" ng-click="showLoginDialog($event)" ng-if="user == null">
 		Login/Registration
 		</md-button>
-		<md-button class="login_reg_button" ng-controller="userController" ng-click="logoutUser()" ng-if="user">
+		<md-button class="login_reg_button" ng-controller="userController" ng-click="logoutUser()" ng-if="user !== null">
 		Log Out
 		</md-button>
 	</div>
