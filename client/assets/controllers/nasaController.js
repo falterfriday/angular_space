@@ -1,4 +1,11 @@
-app.controller('nasaController', ['mainFactory', 'userFactory','$scope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', function(mainFactory, userFactory, $scope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http){
+app.controller('nasaController', ['mainFactory', 'userFactory','$scope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog' , function(mainFactory, userFactory, $scope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog){
+	if($cookies.getObject('user')){
+		$scope.user = $cookies.getObject('user');
+		console.log('current user = ', $scope.user);
+	} else {
+		$scope.user = null;
+		console.log('no current user data');
+	}
 
 	$scope.getPhotos = function(){
 		$scope.apiUrl = [];
@@ -19,10 +26,37 @@ app.controller('nasaController', ['mainFactory', 'userFactory','$scope', '$locat
 
 	$scope.addFavorite = function(photoInfo){
 		$scope.favorite = photoInfo;
+		console.log("user = ", $scope.user);
 		$scope.favorite.userId = $scope.user.id;
 		console.log("favorite = ", $scope.favorite);
-		userFactory.addFavorite($scope.favorite, function(returnedData){
+		userFactory.addNasaFavorite($scope.favorite, function(returnedData){
 			console.log(returnedData);
 		});
 	};
+//---------------------------OPEN PHOTO TAB---------------------------
+	$scope.showPhoto = function(ev, clickedPhoto) {
+		// $scope.clickedPhoto = clickedPhoto;
+		console.log("photo clicked");
+		console.log("linked content = ", clickedPhoto);
+    $mdDialog.show({
+      controller: DialogController,
+      templateUrl: '../../partials/photoPartial.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose:true,
+      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+    });
+		function DialogController($scope, $mdDialog){
+			$scope.clickedPhoto = clickedPhoto;
+			$scope.hide = function() {
+				$mdDialog.hide();
+			};
+			$scope.cancel = function() {
+				$mdDialog.cancel();
+			};
+			$scope.answer = function(answer) {
+				$mdDialog.hide(answer);
+			};
+		}
+  };
 }]);
