@@ -1,0 +1,32 @@
+<md-dialog aria-label="{{clickedPhoto.explanation}} || {{clickedPhoto.title}}"  style="background-color: black">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{clickedPhoto.title}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog">cancel</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content" id="clicked_photo">
+        <img style="margin: auto; max-width: 100%;" src="{{clickedPhoto.url}}">
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" ng-controller="mainController">
+      <md-button ng-if="userLoggedIn == false" class="md-icon-button" ng-click="showLoginDialog($event)" md-autofocus>
+        <md-icon aria-label="Close dialog" ng-style="{color: 'gray'}">favorite</md-icon>
+      </md-button>
+      <md-button ng-if="userLoggedIn == true" ng-controller="redditController" class="md-icon-button" ng-click="addFavorite(clickedPhoto)" md-autofocus>
+        <md-icon aria-label="Close dialog" ng-style="{color: 'red'}">favorite</md-icon>
+      </md-button>
+      <md-button class="md-icon-button">
+        <md-icon aria-label="menu" ng-style="{color: 'white'}">menu</md-icon>
+      </md-button>
+      <md-button class="md-icon-button">
+        <md-icon aria-label="reply" ng-style="{color: 'white'}">reply</md-icon>
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
