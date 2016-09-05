@@ -11,9 +11,9 @@ app.factory('userFactory', ['$http', function($http){
 			});
 		};
 		this.loginUser = function(existingUser, callback){
-			console.log("uF - loginUser = ", existingUser);
+			// console.log("uF - loginUser = ", existingUser);
 			$http.post('/login', existingUser).then(function(returnedData){
-				console.log("uF - returnedData = ", returnedData.data);
+				// console.log("uF - returnedData = ", returnedData.data);
 				callback(returnedData.data);
 			});
 		};
