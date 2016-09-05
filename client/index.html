@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  ng-app="app">
+<html lang="en">
 <head>
 	<title>Leaving Home</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,17 +14,15 @@
 	<script src="ng-simple-parallax/js/ngParallax.min.js"></script>
 	<script src="angular-material/angular-material.min.js"></script>
 	<script src="./assets/app.js"></script>
-	<script src="./assets/factories/mainFactory.js"></script>
 	<script src="./assets/factories/userFactory.js"></script>
 	<script src="./assets/controllers/mainController.js"></script>
 	<script src="./assets/controllers/nasaController.js"></script>
-	<script src="./assets/controllers/userController.js"></script>
 	<script src="./assets/controllers/redditController.js"></script>
 	<script src="./assets/controllers/profileController.js"></script>
 	<link rel="stylesheet" href="./main.css" media="screen" charset="utf-8">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 </head>
-<body ng-controller="mainController" >
+<body ng-app="app" ng-controller="mainController">
 
 <!-- - - - - - - - - - - - - - - - -Header- - - - - - - - - - - - - - - -->
 	<div class="header">
@@ -32,11 +30,11 @@
 			<md-icon class="material-icons" ng-style="{color: 'white'}" aria-label="Close dialog">menu</md-icon>
 		</md-button>
 		<h1>Leaving Home</h1>
-		<md-button class="login_reg_button" ng-controller="userController" ng-click="showLoginDialog($event)" ng-if="user == null">
-		Login/Registration
+		<md-button class="login_reg_button" ng-if="userLoggedIn == true" ng-click="logoutUser()">
+			Log Out
 		</md-button>
-		<md-button class="login_reg_button" ng-controller="userController" ng-click="logoutUser()" ng-if="user !== null">
-		Log Out
+		<md-button class="login_reg_button" ng-if="userLoggedIn == false" ng-click="showLoginDialog($event)">
+		Login/Registration
 		</md-button>
 	</div>
 
@@ -58,20 +56,26 @@
 							<a ng-click="toggleLeft()" ng-href="#/">Home</a>
 						</li>
 						<hr>
-						<li ng-if="user !== null">
+						<li ng-if="userLoggedIn == true">
 							<md-button class="md-icon-button" ng-href="#/profile/{{user.id}}" ng-click="toggleLeft()">
 								<md-icon class="material-icons" ng-style="{color: 'lightblue'}" aria-label="profile">account_box</md-icon>
 							</md-button>
 							<a ng-href="#/profile/{{user.id}}" ng-click="toggleLeft()">Profile</a>
 						</li>
-						<li ng-if="user == null">
-							<md-button class="md-icon-button" ng-controller="userController" ng-click="showLoginDialog($event)">
+						<li ng-if="userLoggedIn == false">
+							<md-button class="md-icon-button" ng-click="showLoginDialog($event)">
 								<md-icon class="material-icons" ng-style="{color: 'lightblue'}" aria-label="profile">account_box</md-icon>
 							</md-button>
-							<a ng-controller="userController" ng-click="showLoginDialog($event)">Profile</a>
+							<a ng-click="showLoginDialog($event)">Profile</a>
 						</li>
 						<hr>
-						<li>
+						<li ng-if="userLoggedIn == true">
+							<md-button class="md-icon-button" ng-href="#/favorites" ng-click="toggleLeft()">
+								<md-icon class="material-icons" ng-style="{color: 'red'}" aria-label="profile">favorite_border</md-icon>
+							</md-button>
+							<a ng-href="#/favorites" ng-click="toggleLeft()">Favorites</a>
+						</li>
+						<li ng-if="userLoggedIn == false">
 							<md-button class="md-icon-button" ng-href="#/favorites" ng-click="toggleLeft()">
 								<md-icon class="material-icons" ng-style="{color: 'red'}" aria-label="profile">favorite_border</md-icon>
 							</md-button>
