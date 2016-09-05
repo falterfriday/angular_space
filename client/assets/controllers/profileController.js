@@ -1,12 +1,4 @@
 app.controller('profileController', ['userFactory', '$scope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog', '$window', function(userFactory, $scope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog, $window){
-	if($cookies.getObject('user')){
-		$scope.user = $cookies.getObject('user');
-		console.log('current user = ', $scope.user);
-	} else {
-		$scope.user = null;
-		console.log('no current user data');
-		$location.url('/');
-	}
 
 	$scope.getUserFavorites = function(){
 		userFactory.getUserFavorites($scope.user, function(returnedData){
@@ -24,7 +16,7 @@ app.controller('profileController', ['userFactory', '$scope', '$location', '$coo
 			console.log("linked content = ", clickedPhoto);
 	    $mdDialog.show({
 	      controller: DialogController,
-	      templateUrl: '../../partials/photoPartial.html',
+	      templateUrl: '../../partials/profilePhotoPartial.html',
 	      parent: angular.element(document.body),
 	      targetEvent: ev,
 	      clickOutsideToClose:true,
