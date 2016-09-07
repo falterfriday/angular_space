@@ -16,10 +16,10 @@
     </md-dialog-content>
     <md-dialog-actions layout="row" ng-controller="mainController">
       <md-button ng-if="userLoggedIn == false" class="md-icon-button" ng-click="showLoginDialog($event)" md-autofocus>
-        <md-icon aria-label="Close dialog" ng-style="{color: 'gray'}">favorite</md-icon>
+        <md-icon aria-label="Close dialog" ng-style="{color: 'white'}">delete</md-icon>
       </md-button>
       <md-button ng-if="userLoggedIn == true" ng-controller="redditController" class="md-icon-button" ng-click="addFavorite(clickedPhoto)" md-autofocus>
-        <md-icon aria-label="Close dialog" ng-style="{color: 'red'}">favorite</md-icon>
+        <md-icon aria-label="Close dialog" ng-style="{color: 'white'}">delete</md-icon>
       </md-button>
       <md-button class="md-icon-button">
         <md-icon aria-label="menu" ng-style="{color: 'white'}">menu</md-icon>
