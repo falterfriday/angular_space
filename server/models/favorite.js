@@ -6,7 +6,6 @@ var Schema = mongoose.Schema;
 var FavoriteSchema = new mongoose.Schema({
   url: {
     type: String,
-    unique:true,
   },
   hdUrl: {
     type: String
