@@ -43,7 +43,6 @@ var UserSchema = new mongoose.Schema({
   },
   pw_conf: {
     type: String,
-    required: [true, "confirmation required"]
   },
   _favorites: [{
     type: Schema.Types.ObjectId, ref: 'Favorite'
