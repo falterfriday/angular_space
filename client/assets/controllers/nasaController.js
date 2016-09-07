@@ -1,17 +1,4 @@
 app.controller('nasaController', ['userFactory','$scope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog' , function(userFactory, $scope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog){
-	//----------------------CHECK LOGIN STATUS----------------------
-	  // $scope.checkUserState = function(){
-		// 	if($cookies.getObject('user')){
-		// 		$scope.user = $cookies.getObject('user');
-	  //     $scope.userLoggedIn = true;
-		// 		console.log('user = ', $scope.user);
-		// 	} else {
-		// 		// $scope.user = null;
-	  //     $scope.userLoggedIn = false;
-		// 		console.log('no current user data');
-		// 	}
-		// };
-		// $scope.checkUserState();
 
 //------------------------GRAB 10 MOST RECENT POSTS FROM APOD------------------------
 	$scope.getPhotos = function(){
@@ -34,7 +21,6 @@ app.controller('nasaController', ['userFactory','$scope', '$location', '$cookies
 //-----------------------ADD FAV WHEN HEART IS CLICKED-----------------------
 	$scope.addFavorite = function(photoInfo){
 		$scope.favorite = photoInfo;
-		$scope.checkUserState();
 		console.log("user = ", $scope.user);
 		$scope.favorite.userId = $scope.user.id;
 		console.log("favorite = ", $scope.favorite);
