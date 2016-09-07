@@ -324,5 +324,5 @@ div.md-tile-content {
 	height: 28.3rem;
 }
 md-card-title {
-	overflow: scroll;
+	overflow: auto;
 }
