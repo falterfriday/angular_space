@@ -1,30 +1,19 @@
 app.controller('redditController', ['userFactory', '$scope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog' , function(userFactory, $scope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog){
 
-//----------------------CHECK LOGIN STATUS----------------------
-  // $scope.checkUserState = function(){
-	// 	if($cookies.getObject('user')){
-	// 		$scope.user = $cookies.getObject('user');
-  //     $scope.userLoggedIn = true;
-	// 		console.log('user = ', $scope.user);
-	// 	} else {
-	// 		// $scope.user = null;
-  //     $scope.userLoggedIn = false;
-	// 		console.log('no current user data');
-	// 	}
-	// };
-	// $scope.checkUserState();
-
 //------------------------GRAB 20 MOST RECENT POSTS ON R/SPACEPORN------------------------
   $scope.getPhotos = function(){
     $http.get('https://www.reddit.com/r/spaceporn/.json?').then(function(returnedData){
       $scope.photos = [];
-      for (var x = 0; x <= 20; x++){
+      for (var x = 0; x <= 24; x++){
         $scope.photos.push(returnedData.data.data.children[x]);
       }
       console.log($scope.photos);
     });
   };
   $scope.getPhotos();
+
+//TODO: get more button or scroll load
+//use https://www.reddit.com/r/spaceporn/.json?&count=25&after=t3_51imls to get the next 25
 
 //-----------------------ADD FAV WHEN HEART IS CLICKED-----------------------
   $scope.addFavorite = function(photoInfo){
