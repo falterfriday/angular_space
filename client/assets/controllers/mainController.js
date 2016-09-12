@@ -1,23 +1,24 @@
-app.controller('mainController', ['userFactory', '$scope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$window', '$mdDialog', function(userFactory, $scope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $window, $mdDialog){
+app.controller('mainController', ['userFactory', '$scope', '$rootScope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$window', '$mdDialog', function(userFactory, $scope, $rootScope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $window, $mdDialog){
 
 //-----------------------------LOGIN-----------------------------
-  $scope.checkUserState = function(){
+  $rootScope.checkUserState = function(){
 		if($cookies.getObject('user')){
-			$scope.user = $cookies.getObject('user');
-      $scope.userLoggedIn = true;
-			console.log('user = ', $scope.user);
-		} else {
-      $scope.userLoggedIn = false;
+			$rootScope.user = $cookies.getObject('user');
+      $rootScope.userLoggedIn = true;
+      console.log("$rootScope.userLoggedIn: ", $rootScope.userLoggedIn);
+			console.log('user = ', $rootScope.user);
+      return $rootScope.userLoggedIn;		} else {
+      $rootScope.userLoggedIn = false;
+      console.log("$rootScope.userLoggedIn: ", $rootScope.userLoggedIn);
 			console.log('no current user data');
 		}
 	};
-	$scope.checkUserState();
+  $rootScope.checkUserState();
 
-  $scope.logoutUser = function(){
+  $rootScope.logoutUser = function(){
     console.log("logout clicked");
     $cookies.remove('user');
-    $scope.userLoggedIn = false;
-    $scope.checkUserState();
+    $rootScope.checkUserState();
   };
 
   //-----------------------------NAVBAR-----------------------------
@@ -41,8 +42,8 @@ app.controller('mainController', ['userFactory', '$scope', '$location', '$cookie
     })
     .then(function(answer){
       console.log('hit the .then');
-      $scope.userLoggedIn = true;
-      $scope.checkUserState();
+      console.log("$scope.userLoggedIn: ", $scope.userLoggedIn);
+      $rootScope.checkUserState();
     });
   };
 
@@ -59,7 +60,6 @@ app.controller('mainController', ['userFactory', '$scope', '$location', '$cookie
   };
 
   $scope.registerUser = function(){
-    // console.log(" uC newUser = ", $scope.newUser);
     userFactory.registerUser($scope.newUser, function(returnedData){
       console.log('returnedData = ', returnedData);
       if(returnedData.errors){
@@ -67,7 +67,8 @@ app.controller('mainController', ['userFactory', '$scope', '$location', '$cookie
         $scope.newUser = {};
       } else {
   			$cookies.putObject('user',{first_name:returnedData.first_name, last_name:returnedData.last_name, id:returnedData._id});
-        $scope.checkUserState();
+        $rootScope.checkUserState();
+        $scope.hide();
       }
     });
   };
