@@ -1,4 +1,4 @@
-app.controller('nasaController', ['userFactory','$scope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog' , function(userFactory, $scope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog){
+app.controller('nasaController', ['userFactory','$scope','$rootScope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog' , function(userFactory, $scope, $rootScope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog){
 
 //------------------------GRAB 10 MOST RECENT POSTS FROM APOD------------------------
 	$scope.getPhotos = function(){
@@ -21,8 +21,8 @@ app.controller('nasaController', ['userFactory','$scope', '$location', '$cookies
 //-----------------------ADD FAV WHEN HEART IS CLICKED-----------------------
 	$scope.addFavorite = function(photoInfo){
 		$scope.favorite = photoInfo;
-		console.log("user = ", $scope.user);
-		$scope.favorite.userId = $scope.user.id;
+		console.log("user = ", $rootScope.user);
+		$scope.favorite.userId = $rootScope.user.id;
 		console.log("favorite = ", $scope.favorite);
 		userFactory.addNasaFavorite($scope.favorite, function(returnedData){
 			console.log(returnedData);
@@ -42,6 +42,7 @@ app.controller('nasaController', ['userFactory','$scope', '$location', '$cookies
       fullscreen: $scope.customFullscreen
     });
 		function photoController($scope, $mdDialog){
+			$scope.userLoggedIn = $rootScope.userLoggedIn;
 			$scope.clickedPhoto = clickedPhoto;
 			$scope.hide = function() {
 				$mdDialog.hide();
