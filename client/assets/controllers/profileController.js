@@ -2,7 +2,7 @@ app.controller('profileController', ['userFactory', '$scope', '$location', '$coo
 
 	$scope.getUserFavorites = function(){
 		userFactory.getUserFavorites($scope.user, function(returnedData){
-			console.log('returnedData = ', returnedData.data[0]);
+			console.log('returnedData = ', returnedData);
 			$scope.userInfo = returnedData.data[0];
 			$scope.userFavorites = returnedData.data[0]._favorites;
 			console.log('userFavorites = ', $scope.userFavorites);
@@ -35,4 +35,11 @@ app.controller('profileController', ['userFactory', '$scope', '$location', '$coo
 				};
 			}
 	  };
+	  $scope.deleteFavorite = function(favorite){
+		//   console.log("click!",favorite);
+		  userFactory.deleteFavorite(favorite, function(returnedData){
+			  console.log("made it back!");
+			  $scope.getUserFavorites();
+		  });
+	};
 }]);
