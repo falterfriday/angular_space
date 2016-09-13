@@ -1,4 +1,4 @@
-app.controller('redditController', ['userFactory', '$scope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog' , function(userFactory, $scope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog){
+app.controller('redditController', ['userFactory', '$scope', '$rootScope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog' , function(userFactory, $scope, $rootScope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog){
 
 //------------------------GRAB 20 MOST RECENT POSTS ON R/SPACEPORN------------------------
   $scope.getPhotos = function(){
@@ -18,9 +18,9 @@ app.controller('redditController', ['userFactory', '$scope', '$location', '$cook
 //-----------------------ADD FAV WHEN HEART IS CLICKED-----------------------
   $scope.addFavorite = function(photoInfo){
 		$scope.favorite = photoInfo.data;
-		$scope.checkUserState();
-		console.log("user = ", $scope.user);
-		$scope.favorite.userId = $scope.user.id;
+		console.log("photoInfo = ", photoInfo.data);
+		console.log("user = ", $rootScope.user);
+		$scope.favorite.userId = $rootScope.user.id;
 		console.log("favorite = ", $scope.favorite);
 		userFactory.addRedditFavorite($scope.favorite, function(returnedData){
 			console.log(returnedData);
@@ -29,8 +29,7 @@ app.controller('redditController', ['userFactory', '$scope', '$location', '$cook
 
 //---------------------------OPEN PHOTO DIALOG---------------------------
   $scope.showPhoto = function(ev, clickedPhoto) {
-		console.log("photo clicked");
-		console.log("linked content = ", clickedPhoto);
+		console.log("clicked photo content = ", clickedPhoto);
     $mdDialog.show({
       controller: photoController,
       templateUrl: '../../partials/redditPhotoPartial.html',
@@ -38,9 +37,13 @@ app.controller('redditController', ['userFactory', '$scope', '$location', '$cook
       targetEvent: ev,
       clickOutsideToClose:true,
       fullscreen: $scope.customFullscreen
-    });
-		function photoController($scope, $mdDialog){
+  	}).then(function(answer){
+	  console.log("what what?!");
+  });
+		function photoController($scope, $rootScope, $mdDialog){
+			$scope.userLoggedIn = $rootScope.userLoggedIn
 			$scope.clickedPhoto = clickedPhoto;
+
 			$scope.hide = function() {
 				$mdDialog.hide();
 			};
