@@ -23,7 +23,7 @@
           <md-button class="md-icon-button" aria-label="Favorite" ng-if="userLoggedIn == true" ng-click="addFavorite(photo)">
             <md-icon class="material-icons" ng-style="{color: 'red'}">favorite</md-icon>
           </md-button>
-          <md-button class="md-icon-button" aria-label="Favorite" ng-if="userLoggedIn == false" ng-controller="mainController" ng-click="showLoginDialog($event)">
+          <md-button class="md-icon-button" aria-label="Favorite" ng-controller="mainController" ng-if="userLoggedIn == false" ng-click="showLoginDialog($event)">
             <md-icon class="material-icons" ng-style="{color: 'gray'}">favorite</md-icon>
           </md-button>
           <md-button class="md-icon-button" aria-label="Settings">
