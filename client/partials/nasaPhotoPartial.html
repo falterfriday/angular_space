@@ -15,7 +15,7 @@
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row" ng-controller="mainController">
-      <md-button ng-if="userLoggedIn == false" ng-controller="nasaController" class="md-icon-button" ng-click="showLoginDialog($event)" md-autofocus>
+      <md-button ng-if="userLoggedIn == false" ng-controller="mainController" class="md-icon-button" ng-click="showLoginDialog($event)" md-autofocus>
         <md-icon aria-label="Close dialog" ng-style="{color: 'gray'}">favorite</md-icon>
       </md-button>
       <md-button ng-if="userLoggedIn == true" ng-controller="nasaController" class="md-icon-button" ng-click="addFavorite(clickedPhoto)" md-autofocus>
