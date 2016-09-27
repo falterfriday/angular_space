@@ -1,4 +1,9 @@
-var app = angular.module('app', ['ngRoute', 'ngCookies', 'ngMaterial', 'ngMessages', 'ngParallax']);
+var app = angular.module('app', ['ngRoute', 'ngCookies', 'ngMaterial', 'ngMessages', '720kb.socialshare']);
+app.config(function($mdThemingProvider) {
+	$mdThemingProvider.theme('default')
+	.dark();
+});
+
 app.config(function($routeProvider){
 $routeProvider
 	.when('/', {
