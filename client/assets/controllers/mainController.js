@@ -5,8 +5,8 @@ app.controller('mainController', ['userFactory', '$scope', '$rootScope', '$locat
         if($cookies.getObject('user')){
             $rootScope.user = $cookies.getObject('user');
             $rootScope.userLoggedIn = true;
-            console.log("$rootScope.userLoggedIn: ", $rootScope.userLoggedIn);
-            console.log('user = ', $rootScope.user);
+            // console.log("$rootScope.userLoggedIn: ", $rootScope.userLoggedIn);
+            // console.log('user = ', $rootScope.user);
             return $rootScope.userLoggedIn;
         } else {
             $rootScope.userLoggedIn = false;
@@ -17,7 +17,7 @@ app.controller('mainController', ['userFactory', '$scope', '$rootScope', '$locat
     $rootScope.checkUserState();
 
     $rootScope.logoutUser = function(){
-        console.log("logout clicked");
+        // console.log("logout clicked");
         $cookies.remove('user');
         $rootScope.checkUserState();
     };
@@ -42,14 +42,14 @@ app.controller('mainController', ['userFactory', '$scope', '$rootScope', '$locat
             fullscreen: $scope.customFullscreen
         })
         .then(function(answer){
-            console.log('hit the .then');
-            console.log("$scope.userLoggedIn: ", $scope.userLoggedIn);
+            // console.log('hit the .then');
+            // console.log("$scope.userLoggedIn: ", $scope.userLoggedIn);
             $rootScope.checkUserState();
         });
     };
 
     $scope.loginUser = function(){
-        console.log($scope.existingUser);
+        // console.log($scope.existingUser);
         userFactory.loginUser($scope.existingUser, function(returnedData){
             if(returnedData.errors){
                 $scope.login = {};
@@ -62,7 +62,7 @@ app.controller('mainController', ['userFactory', '$scope', '$rootScope', '$locat
 
     $scope.registerUser = function(){
         userFactory.registerUser($scope.newUser, function(returnedData){
-        console.log('returnedData = ', returnedData);
+        // console.log('returnedData = ', returnedData);
             if(returnedData.errors){
                 $scope.errors = returnedData;
                 $scope.newUser = {};
