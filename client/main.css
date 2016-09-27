@@ -1,21 +1,29 @@
+html {
+	background-color: #000000;
+}
 body {
 	font-family: Roboto;
 	background-color: #000000;
 }
+.wrapper {
+	width: 100vw;
+	height: 100vh;
+	overflow-y: hidden;
+}
 .header {
 	border-bottom: solid #262626 1px;
-	padding: 0.7rem 0;
+	padding: auto;
 	background-color: black;
-	text-align: center;
 	position: fixed;
-	width: 100%;
+	width: 100vw;
+	height: 7vh;
 	z-index: 3;
 }
 #toggle {
 	display: inline-block;
 	position: fixed;
 	left: 0;
-	margin: 0 0 0 0.6rem;
+	margin: 0 0 0 0.4vw;
 	color: #ffffff;
 	border: solid 1px #262626;
 	background-color: #343434;
@@ -24,7 +32,6 @@ body {
 	text-transform: none;
 }
 h1 {
-	/*font-variant: small-caps;*/
 	margin: 0;
 	font-weight:300;
 	font-size: 2.2rem;
@@ -37,7 +44,7 @@ h1 {
 	display: inline-block;
 	right: 0;
 	color: #ffffff;
-	margin: 0 0.6rem 0 0;
+	margin: 0 0.4vw 0 0;
 	font-weight: 400;
 	font-size: 1rem;
 	border: solid 1px #262626;
@@ -47,10 +54,10 @@ h1 {
 	text-transform: none;
 }
 .top_container {
-	height: 30rem;
 	border: solid #0d0d0d 1px;
 	text-align: center;
 	position: relative;
+	height: 50vh;
 	top: 3em;
 }
 #main_banner {
@@ -159,9 +166,9 @@ a {
 	padding: 0 15px;
 }
 #nasa_main_banner img {
-	height: 10.5rem;
-	width: 12.5rem;
-	margin-top: 8rem;
+	height: 15vh;
+	width: 18vh;
+	margin-top: 4vh;
 }
 #nasa_main_banner h4 {
 	margin-top: 2rem;
@@ -178,15 +185,16 @@ a {
 	letter-spacing: 0.1rem;
 }
 .photo_container {
-	height:auto;
+	height:43vh;
 	background-color: black;
 	margin-top: 3rem;
 }
 .md-padding {
 	padding: 0rem;
+	height: 100%
 }
 .md-card-image {
-	height: 12rem;
+	height: 34vh;
 	width: inherit;;
 }
 .md-padding {
@@ -216,9 +224,9 @@ md-card-actions {
 	padding: 0 15px;
 }
 #reddit_main_banner img {
-	height: 10.5rem;
-	width: 11rem;
-	margin-top: 8rem;
+	height: 15vh;
+	width: 16vh;
+	margin-top: 4vh;
 }
 #reddit_main_banner h4 {
 	margin-top: 3rem;
@@ -230,6 +238,9 @@ md-card-actions {
 #reddit_main_banner p {
 	float: right;
 	margin-right: 20%;
+}
+.reddit_photo_card {
+	/*height: 28.3rem;*/
 }
 /***************PROFILE PAGE***************/
 #profile_main_banner {
@@ -320,9 +331,12 @@ div.md-tile-content {
 #clicked_photo img {
 	width: 100%;
 }
-.reddit_photo_card {
-	height: 28.3rem;
-}
 md-card-title {
 	overflow: auto;
+}
+md-menu-content {
+	background-color: black;
+}
+md-menu-item span {
+	color: white;
 }
