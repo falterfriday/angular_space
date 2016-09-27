@@ -11,8 +11,8 @@
 	<script src="angular-messages/angular-messages.min.js"></script>
 	<link rel="stylesheet" href="angular-material/angular-material.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<script src="ng-simple-parallax/js/ngParallax.min.js"></script>
 	<script src="angular-material/angular-material.min.js"></script>
+	<script src="angular-socialshare/lib/angular-socialshare.js"></script>
 	<script src="./assets/app.js"></script>
 	<script src="./assets/factories/userFactory.js"></script>
 	<script src="./assets/controllers/mainController.js"></script>
@@ -21,11 +21,13 @@
 	<script src="./assets/controllers/profileController.js"></script>
 	<link rel="stylesheet" href="./main.css" media="screen" charset="utf-8">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+	<script src="https://use.fontawesome.com/3e035259a5.js"></script>
 </head>
 <body ng-app="app" ng-controller="mainController">
+<div class="wrapper">
 
 <!-- - - - - - - - - - - - - - - - -Header- - - - - - - - - - - - - - - -->
-	<div class="header">
+	<div class="header" layout="row" layout-align="center center">
 		<md-button id="toggle" class="md-icon-button" ng-click="toggleLeft()" class="md-raised">
 			<md-icon class="material-icons" ng-style="{color: 'white'}" aria-label="Close dialog">menu</md-icon>
 		</md-button>
@@ -34,7 +36,7 @@
 			Log Out
 		</md-button>
 		<md-button class="login_reg_button" ng-if="userLoggedIn == false" ng-click="showLoginDialog($event)">
-		Login/Registration
+		Login/Register
 		</md-button>
 	</div>
 
@@ -90,5 +92,6 @@
 <!-- - - - - - - - - - - - - - - - -Partial Loading Div- - - - - - - - - - -->
 	<div ng-view>
 	</div>
+</div>
 </body>
 </html>
