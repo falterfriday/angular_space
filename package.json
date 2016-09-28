@@ -1,15 +1,16 @@
 {
-  "name": "file_structure",
-  "version": "1.0.0",
+  "name": "space",
+  "version": "0.7.0",
   "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Patrick Todd <patrick.a.todd@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "angular-socialshare": "^2.2.9",
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
