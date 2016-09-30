@@ -273,13 +273,13 @@ md-card, md-card-content, md-item-content.layout-row {
 	color: black;
 }
 md-tabs md-ink-bar {
-	background: #ffffff;
+	/*background: #ffffff;*/
 }
 md-ink-bar.md-right {
-	background: #ffffff;
+	/*background: #ffffff;*/
 }
 md-ink-bar.md-left {
-	background: #ffffff;
+	/*background: #ffffff;*/
 }
 ui-view.layout-fill {
 	background-color: #000000;
@@ -339,4 +339,11 @@ md-menu-content {
 }
 md-menu-item span {
 	color: white;
+}
+#scrollable {
+	height: 43vh;
+	/*overflow-y: scroll;*/
+}
+md-content {
+	background-color: black;
 }
