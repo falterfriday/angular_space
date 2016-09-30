@@ -9,7 +9,7 @@ app.controller('profileController', ['userFactory', '$scope', '$location', '$coo
 		});
 	};
 	$scope.getUserFavorites();
-
+	
 	//---------------------------OPEN PHOTO TAB---------------------------
 		$scope.showPhoto = function(ev, clickedPhoto) {
 			console.log("photo clicked");
