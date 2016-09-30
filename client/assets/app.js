@@ -24,5 +24,5 @@ $routeProvider
 	})
 	.otherwise({
 			redirectTo: '/'
-		});
 	});
+});
