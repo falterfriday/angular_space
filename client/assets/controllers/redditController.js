@@ -15,6 +15,15 @@ app.controller('redditController', ['userFactory', '$scope', '$rootScope', '$loc
     //TODO: get more button or scroll load
     //use https://www.reddit.com/r/spaceporn/.json?&count=25&after=t3_51imls to get the next 25
 
+//--------------------CREATE ARRAY WITH USER FAVORITE URLS-------------------
+    $scope.getFavUrls = function(){
+        console.log("get the favs");
+        userFactory.getFavUrls($scope.user, function(returnedData){
+            $scope.userFavUrls = returnedData;
+            console.log("controller returnedData = ", returnedData);
+        });
+    };
+    $scope.getFavUrls();
 //-----------------------ADD FAV WHEN HEART IS CLICKED-----------------------
     $scope.addFavorite = function(photoInfo){
         $scope.favorite = photoInfo.data;
@@ -24,9 +33,18 @@ app.controller('redditController', ['userFactory', '$scope', '$rootScope', '$loc
         console.log("favorite = ", $scope.favorite);
         userFactory.addRedditFavorite($scope.favorite, function(returnedData){
             console.log(returnedData);
+            $scope.getFavUrls();
         });
     };
 
+//-------------------REMOVE FAV WHEN DELETE IS CLICKED-------------------
+    $scope.deleteFavorite = function(favorite){
+        console.log("click!",favorite);
+        // userFactory.deleteFavorite(favorite, function(returnedData){
+        //     console.log("made it back!");
+        //     $scope.getUserFavorites();
+        // });
+    };
 //---------------------------OPEN PHOTO DIALOG---------------------------
     $scope.showPhoto = function(ev, clickedPhoto){
         console.log("clicked photo content = ", clickedPhoto);
@@ -56,7 +74,6 @@ app.controller('redditController', ['userFactory', '$scope', '$rootScope', '$loc
 
 //---------------------------DROPDOWN MENU---------------------------
     var originatorEv;
-
     $scope.openMenu = function($mdOpenMenu, ev) {
     originatorEv = ev;
     $mdOpenMenu(ev);
