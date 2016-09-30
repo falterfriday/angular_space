@@ -12,10 +12,10 @@ function UserController(){
       password:req.body.password,
       pw_conf:req.body.pw_conf
     });
-    console.log("users.js = ", user);
+    // console.log("users.js = ", user);
     user.save(function(err){
       if(err){
-        console.log('new user not added');
+        // console.log('new user not added');
         res.json(err);
       }
       else {
@@ -32,7 +32,7 @@ function UserController(){
           res.json({error:"invalid login credentials"});
         } else {
           if(bcrypt.compareSync(req.body.password, user.password)){
-            console.log("user data = ", user);
+            // console.log("user data = ", user);
             res.json(user);
           } else {
             res.json({error: "incorrect password"});
@@ -53,13 +53,13 @@ function UserController(){
       user._favorites.push(favorite);
       favorite.save(function(err){
         if(err){
-          console.log('problem saving favorite');
+          // console.log('problem saving favorite');
         } else {
           user.save({validateBeforeSave:false}, function(err){
             if(err){
               res.json(err);
             } else {
-              console.log('favorite successfully saved');
+              // console.log('favorite successfully saved');
               res.json(favorite);
             }
           });
@@ -79,13 +79,13 @@ function UserController(){
       user._favorites.push(favorite);
       favorite.save(function(err){
         if(err){
-          console.log('problem saving favorite');
+          // console.log('problem saving favorite');
         } else {
           user.save({validateBeforeSave:false}, function(err){
             if(err){
               res.json(err);
             } else {
-              console.log('favorite successfully saved');
+              // console.log('favorite successfully saved');
               res.json(favorite);
             }
           });
@@ -96,10 +96,20 @@ function UserController(){
   this.getUserInfo = function(req,res){
     User.find({_id:req.body.id}, function(err, user){
       if(err){
-        console.log("error retrieving user");
+        // console.log("error retrieving user");
         res.json(err);
       } else {
         res.json(user);
+      }
+    });
+  };
+  this.getFavUrls = function(req,res){
+    console.log(req.body);
+    User.find({_id:req.body.id}).populate('_favorites').exec(function(err, favorites){
+      if(err){
+        res.json(err);
+      } else {
+        res.json(favorites);
       }
     });
   };
@@ -107,11 +117,23 @@ function UserController(){
     console.log(req.body);
     User.find({_id:req.body.id}).populate('_favorites').exec(function(err, favorites){
       if(err){
-        console.log('error retrieving favorites');
+        // console.log('error retrieving favorites');
         res.json(err);
       } else {
-        console.log('favorites retrieved');
+        // console.log('favorites retrieved');
         res.json(favorites);
+      }
+    });
+  };
+  this.deleteFavorite = function(req, res){
+    favorite = Favorite.find({_id:req.body._id});
+    favorite.remove(function(err, favorite){
+      if(err){
+        // console.log("error deleting favorite");
+        res.json(err);
+      } else {
+        // console.log("successfully deleted favorite");
+        res.json(favorite);
       }
     });
   };
