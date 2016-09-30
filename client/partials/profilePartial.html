@@ -13,7 +13,7 @@
 		Favorites
 	</md-tab>
 </md-tabs>
-<md-content flex md-scroll-y>
+<md-content flex md-scroll-y id="scrollable">
 	<ui-view layout="column" layout-fill layout-padding>
 		<ng-switch on="data.selectedIndex" class="tabpanel-container">
 			<div role="tabpanel"
@@ -26,7 +26,6 @@
 				<md-card id="info_card">
 					<md-card-content>
 						<h2>Email: {{userInfo.email}}</h2>
-						<!-- <h4>Password: {{userInfo.password}}</h4> STILL HASHED AND SALTED -->
 						<h4 class="inset">Account Created: {{userInfo.createdAt | date: 'longDate'}}</h4>
 					</md-card-content>
 				</md-card>
@@ -44,29 +43,31 @@
 						<md-list>
 							<md-item ng-repeat="favorite in userFavorites | orderBy: 'createdAt':true ">
 								<md-item-content layout="row">
-                  <div class="md-tile-left left_tile">
-                    <img src="{{favorite.url}}" class="favorite_image" ng-click="showPhoto($event, favorite)"/>
-                	</div>
-                  <div class="md-tile-content center_tile">
-                    <h3>{{favorite.title}}</h3>
-                    <h4 class="inset">Photographer: {{favorite.photographer}}</h4>
-                    <p class="inset"><a href="{{favorite.hdUrl}}">HD Version</a></p>
-                  </div>
-										<md-card-actions  class="right_tile" layout="column" layout-align="center">
-						          <md-button class="md-icon-button" aria-label="Favorite">
-						            <md-icon class="material-icons" ng-style="{color: 'white'}">delete</md-icon>
-						          </md-button>
-											<span flex></span>
-						          <md-button class="md-icon-button" aria-label="Settings">
-						            <md-icon class="material-icons" ng-style="{color: 'white'}">menu</md-icon>
-						          </md-button>
-											<span flex></span>
-						          <md-button class="md-icon-button" aria-label="Favorite">
-						            <md-icon class="material-icons" ng-style="{color: 'white'}">reply</md-icon>
-						          </md-button>
-						        </md-card-actions>
-                </md-item-content>
-                <md-divider ng-if="!$last"></md-divider>
+									<div class="md-tile-left left_tile">
+										<img ng-src="{{favorite.url}}" class="favorite_image" ng-click="showPhoto($event, favorite)"/>
+									</div>
+									<div class="md-tile-content center_tile">
+										<h3>{{favorite.title}}</h3>
+										<h4 class="inset">Photographer: {{favorite.photographer}}</h4>
+										<p class="inset"><a href="{{favorite.hdUrl}}">HD Version</a></p>
+									</div>
+									<md-card-actions  class="right_tile" layout="column" layout-align="center">
+										<md-button class="md-icon-button" aria-label="Delete Favorite"  ng-click="deleteFavorite(favorite)">
+											<md-icon class="material-icons" ng-style="{color: 'white'}">delete</md-icon>
+										</md-button>
+										<span flex></span>
+										<a download href="{{favorite.hdUrl}}" title="Download">
+					                        <md-button class="md-icon-button">
+					                            <md-icon aria-label="menu" ng-style="{color: 'white'}">file_download</md-icon>
+					                        </md-button>
+					                    </a>
+										<span flex></span>
+										<md-button class="md-icon-button" aria-label="Favorite">
+											<md-icon class="material-icons" ng-style="{color: 'white'}">reply</md-icon>
+										</md-button>
+									</md-card-actions>
+								</md-item-content>
+							<md-divider ng-if="!$last"></md-divider>
 							</md-item>
 						</md-list>
 					</md-card-content>
