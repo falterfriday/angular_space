@@ -61,6 +61,7 @@ app.controller('mainController', ['userFactory', '$scope', '$rootScope', '$locat
     };
 
     $scope.registerUser = function(){
+        console.log($scope.newUser);
         userFactory.registerUser($scope.newUser, function(returnedData){
         // console.log('returnedData = ', returnedData);
             if(returnedData.errors){
