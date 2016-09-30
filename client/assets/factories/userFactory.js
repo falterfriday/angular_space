@@ -35,6 +35,18 @@ app.factory('userFactory', ['$http', function($http){
 				callback(returnedData);
 			});
 		};
+		this.getFavUrls = function(user, callback){
+			console.log("user = ", user);
+			$http.post('/getFavUrls', user).then(function(returnedData){
+				returnedData = returnedData.data[0]._favorites;
+				console.log(returnedData);
+				var arrFavs = [];
+				for (var i = 0; i < returnedData.length ; i++){
+					arrFavs.push(returnedData[i].url);
+				}
+				callback(arrFavs);
+			});
+		};
 		this.deleteFavorite = function(favorite, callback){
 			console.log('uF delete');
 			$http.post('/deleteFavorite', favorite).then(function(returnedData){
