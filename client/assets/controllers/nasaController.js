@@ -11,7 +11,7 @@ app.controller('nasaController', ['userFactory','$scope','$rootScope', '$locatio
         }
         // loop grabs the url from the photo array and gets the associated data
         for (var y = 0; y < $scope.apiUrl.length; y++){
-            $http.get( $scope.apiUrl[y] ).then( function(returnedData){
+            $http.get( $scope.apiUrl[y] ).then(function(returnedData){
                 $scope.returnedDataArr.push(returnedData.data);
             });
         }
