@@ -39,11 +39,12 @@ app.controller('redditController', ['userFactory', '$scope', '$rootScope', '$loc
 
 //-------------------REMOVE FAV WHEN DELETE IS CLICKED-------------------
     $scope.deleteFavorite = function(favorite){
+        favorite = {'url':favorite};
         console.log("click!",favorite);
-        // userFactory.deleteFavorite(favorite, function(returnedData){
-        //     console.log("made it back!");
-        //     $scope.getUserFavorites();
-        // });
+        userFactory.deleteFavorite(favorite, function(returnedData){
+            console.log("made it back!");
+            $scope.getFavUrls();
+        });
     };
 //---------------------------OPEN PHOTO DIALOG---------------------------
     $scope.showPhoto = function(ev, clickedPhoto){
