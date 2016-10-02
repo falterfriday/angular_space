@@ -126,16 +126,29 @@ function UserController(){
     });
   };
   this.deleteFavorite = function(req, res){
-    favorite = Favorite.find({_id:req.body._id});
-    favorite.remove(function(err, favorite){
-      if(err){
-        // console.log("error deleting favorite");
-        res.json(err);
-      } else {
-        // console.log("successfully deleted favorite");
-        res.json(favorite);
-      }
-    });
+    if (!req.body._id){
+      // console.log("wakka wakka", req.body.url);
+      favorite = Favorite.find({url:req.body.url});
+      console.log("favorite = ", favorite);
+      favorite.remove(function(err, favorite){
+        if(err){
+          res.json(err);
+        } else {
+          res.json(favorite);
+        }
+      });
+    } else {
+      favorite = Favorite.find({_id:req.body._id});
+      favorite.remove(function(err, favorite){
+        if(err){
+          // console.log("error deleting favorite");
+          res.json(err);
+        } else {
+          // console.log("successfully deleted favorite");
+          res.json(favorite);
+        }
+      });
+    }
   };
 }
 module.exports = new UserController();
