@@ -48,7 +48,7 @@ app.factory('userFactory', ['$http', function($http){
 			});
 		};
 		this.deleteFavorite = function(favorite, callback){
-			console.log('uF delete');
+			console.log('uF delete', favorite);
 			$http.post('/deleteFavorite', favorite).then(function(returnedData){
 				callback(returnedData);
 			});
