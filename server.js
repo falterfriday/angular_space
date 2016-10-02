@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 var mongoose = require('mongoose'),
 	express = require('express'),
 	bodyparser = require('body-parser'),
