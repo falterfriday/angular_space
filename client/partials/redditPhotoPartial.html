@@ -15,11 +15,14 @@
         </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-        <md-button ng-if="userLoggedIn == false" class="md-icon-button"  ng-controller="mainController" ng-click="showLoginDialog($event)" md-autofocus>
-            <md-icon aria-label="Close dialog" ng-style="{color: 'gray'}">favorite</md-icon>
+        <md-button class="md-icon-button" aria-label="Remove Favorite"  ng-if="userLoggedIn == true && userFavUrls.includes(clickedPhoto.data.url) == true" ng-click="deleteFavorite1(clickedPhoto.data.url)">
+            <md-icon class="material-icons" ng-style="{color: 'red'}">favorite</md-icon>
         </md-button>
-        <md-button ng-if="userLoggedIn == true" ng-controller="redditController" class="md-icon-button" ng-click="addFavorite(clickedPhoto)" md-autofocus>
-            <md-icon aria-label="Close dialog" ng-style="{color: 'red'}">favorite</md-icon>
+        <md-button class="md-icon-button" aria-label="Favorite"  ng-if="userLoggedIn == true && userFavUrls.includes(clickedPhoto.data.url) == false" ng-click="addFavorite1(clickedPhoto)">
+            <md-icon class="material-icons" ng-style="{color: 'white'}">favorite_border</md-icon>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="Favorite" ng-if="userLoggedIn == false" ng-controller="mainController" ng-click="showLoginDialog($event)">
+            <md-icon class="material-icons" ng-style="{color: 'gray'}">favorite</md-icon>
         </md-button>
         <a download href="{{clickedPhoto.data.url}}" title="Download">
             <md-button class="md-icon-button">
