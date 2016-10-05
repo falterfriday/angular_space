@@ -62,12 +62,47 @@
 					                        </md-button>
 					                    </a>
 										<span flex></span>
-										<md-button class="md-icon-button" aria-label="Favorite">
-											<md-icon class="material-icons" ng-style="{color: 'white'}">reply</md-icon>
-										</md-button>
+										<md-menu md-position-mode="target-right target">
+								            <md-button class="md-icon-button" aria-label="Open share interactions menu" ng-click="openMenu($mdOpenMenu, $event)">
+								                <md-icon class="material-icons" md-menu-origin ng-style="{color: 'white'}">reply</md-icon>
+								            </md-button>
+								            <md-menu-content width="2">
+								                <md-menu-item>
+								                    <md-button class="material-icon-button" layout-align="center center"
+								                        socialshare
+								                        socialshare-provider="reddit"
+								                        socialshare-trigger="click"
+								                        socialshare-url="{{favorite.hdurl}}">
+								                        <md-icon class="material-icons" ng-style="{color: 'white'}"><i class="fa fa-reddit-alien"></i></md-icon>
+								                        <span>Reddit</span>
+								                    </md-button>
+								                </md-menu-item>
+								                <md-menu-item>
+								                    <md-button class="material-icon-button" layout-align="center center"
+								                        socialshare
+								                        socialshare-provider="facebook"
+								                        socialshare-trigger="click"
+								                        socialshare-media="{{favorite.hdurl}}">
+								                        <md-icon class="material-icons" ng-style="{color: 'white'}"><i class="fa fa-facebook"></i></md-icon>
+								                        <span>Facebook</span>
+								                    </md-button>
+								                </md-menu-item>
+								                <md-menu-item>
+								                    <md-button class="material-icon-button"
+								                        socialshare
+								                        socialshare-trigger="click"
+								                        socialshare-provider="email"
+								                        socialshare-body="{{favorite.hdurl}}"
+								                        socialshare-subject="Photo from nasa APOD">
+								                        <md-icon class="material-icons" ng-style="{color: 'white'}">email</md-icon>
+								                        <span>Email</span>
+								                    </md-button>
+								                </md-menu-item>
+								            </md-menu-content>
+								        </md-menu>
 									</md-card-actions>
 								</md-item-content>
-							<md-divider ng-if="!$last"></md-divider>
+								<md-divider ng-if="!$last"></md-divider>
 							</md-item>
 						</md-list>
 					</md-card-content>
