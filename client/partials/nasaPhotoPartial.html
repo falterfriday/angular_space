@@ -15,13 +15,16 @@
                 <img style="margin: auto; max-width: 100%" ng-if="hd === true" ng-src="{{clickedPhoto.hdurl}}">
             </div>
         </md-dialog-content>
-        <md-dialog-actions layout="row" ng-controller="mainController">
-            <md-switch  class="md-primary" ng-model="hd" ng-change="onChange(hd)" aria-label="HD Switch" layout-align="start">HD</md-switch>
-            <md-button ng-if="userLoggedIn == false" ng-controller="mainController" class="md-icon-button" ng-click="showLoginDialog($event)" md-autofocus>
-                <md-icon aria-label="Close dialog" ng-style="{color: 'gray'}">favorite</md-icon>
+        <md-dialog-actions layout="row" layout-align="end center">
+            <md-switch  class="md-primary" ng-model="hd" ng-change="onChange(hd)" aria-label="HD Switch" layout-align="center start">HD</md-switch>
+            <md-button class="md-icon-button" aria-label="Remove Favorite"  ng-if="userLoggedIn == true && userFavUrls.includes(clickedPhoto.url) == true" ng-click="deleteFavorite1(clickedPhoto.url)">
+                <md-icon class="material-icons" ng-style="{color: 'red'}">favorite</md-icon>
             </md-button>
-            <md-button ng-if="userLoggedIn == true" ng-controller="nasaController" class="md-icon-button" ng-click="addFavorite(clickedPhoto)" md-autofocus>
-                <md-icon aria-label="Close dialog" ng-style="{color: 'red'}">favorite</md-icon>
+            <md-button class="md-icon-button" aria-label="Favorite"  ng-if="userLoggedIn == true && userFavUrls.includes(clickedPhoto.url) == false" ng-click="addFavorite1(clickedPhoto)">
+                <md-icon class="material-icons" ng-style="{color: 'white'}">favorite_border</md-icon>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Favorite" ng-if="userLoggedIn == false" ng-controller="mainController" ng-click="showLoginDialog($event)">
+                <md-icon class="material-icons" ng-style="{color: 'gray'}">favorite</md-icon>
             </md-button>
             <a download href="{{clickedPhoto.hdurl}}" title="Download">
                 <md-button class="md-icon-button">
