@@ -55,7 +55,7 @@ app.controller('redditController', ['userFactory', '$scope', '$rootScope', '$loc
             templateUrl: '/partials/redditPhotoPartial.html',
             parent: angular.element(document.body),
             targetEvent: ev,
-            clickOutsideToClose:false,
+            clickOutsideToClose:true,
             fullscreen:false
         });
         function photoController($scope, $rootScope, $mdDialog){
