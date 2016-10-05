@@ -14,18 +14,53 @@
             <img style="margin: auto; max-width: 100%;" ng-src="{{clickedPhoto.url}}">
         </div>
     </md-dialog-content>
-    <md-dialog-actions layout="row" ng-controller="mainController">
-        <md-button ng-controller="profileController" class="md-icon-button" ng-click="deleteFavorite(clickedPhoto)">
+    <md-dialog-actions layout="row">
+        <!-- <md-button class="md-icon-button" ng-click="deleteFavorite(clickedPhoto)">
             <md-icon aria-label="Close dialog" ng-style="{color: 'white'}">delete</md-icon>
-        </md-button>
+        </md-button> -->
         <a download href="{{clickedPhoto.hdUrl}}" title="Download">
             <md-button class="md-icon-button">
                 <md-icon aria-label="menu" ng-style="{color: 'white'}">file_download</md-icon>
             </md-button>
         </a>
-        <md-button class="md-icon-button">
-            <md-icon aria-label="reply" ng-style="{color: 'white'}">reply</md-icon>
-        </md-button>
+        <md-menu md-position-mode="target-right target" ng-controller="profileController">
+            <md-button class="md-icon-button" aria-label="Open share interactions menu" ng-click="openMenu($mdOpenMenu, $event)">
+                <md-icon class="material-icons" md-menu-origin ng-style="{color: 'white'}">reply</md-icon>
+            </md-button>
+            <md-menu-content width="2">
+                <md-menu-item>
+                    <md-button class="material-icon-button" layout-align="center center"
+                        socialshare
+                        socialshare-provider="reddit"
+                        socialshare-trigger="click"
+                        socialshare-url="{{clickedPhoto.hdurl}}">
+                        <md-icon class="material-icons" ng-style="{color: 'white'}"><i class="fa fa-reddit-alien"></i></md-icon>
+                        <span>Reddit</span>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button class="material-icon-button" layout-align="center center"
+                        socialshare
+                        socialshare-provider="facebook"
+                        socialshare-trigger="click"
+                        socialshare-media="{{clickedPhoto.hdurl}}">
+                        <md-icon class="material-icons" ng-style="{color: 'white'}"><i class="fa fa-facebook"></i></md-icon>
+                        <span>Facebook</span>
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button class="material-icon-button"
+                        socialshare
+                        socialshare-trigger="click"
+                        socialshare-provider="email"
+                        socialshare-body="{{clickedPhoto.hdurl}}"
+                        socialshare-subject="Photo from nasa APOD">
+                        <md-icon class="material-icons" ng-style="{color: 'white'}">email</md-icon>
+                        <span>Email</span>
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
     </md-dialog-actions>
     </form>
 </md-dialog>
