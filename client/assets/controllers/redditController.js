@@ -7,7 +7,7 @@ app.controller('redditController', ['userFactory', '$scope', '$rootScope', '$loc
             for (var x = 0; x <= 24; x++){
                 $scope.photos.push(returnedData.data.data.children[x]);
             }
-            console.log($scope.photos);
+            // console.log($scope.photos);
         });
     };
     $scope.getPhotos();
@@ -18,19 +18,20 @@ app.controller('redditController', ['userFactory', '$scope', '$rootScope', '$loc
 //--------------------CREATE ARRAY WITH USER FAVORITE URLS-------------------
     $scope.getFavUrls = function(){
         console.log("get the favs");
-        userFactory.getFavUrls($scope.user, function(returnedData){
+        // console.log("rootScope.user = ",$rootScope.user);
+        userFactory.getFavUrls($rootScope.user, function(returnedData){
             $scope.userFavUrls = returnedData;
-            console.log("controller returnedData = ", returnedData);
+            // console.log("controller returnedData = ", returnedData);
         });
     };
     $scope.getFavUrls();
 //-----------------------ADD FAV WHEN HEART IS CLICKED-----------------------
     $scope.addFavorite = function(photoInfo){
         $scope.favorite = photoInfo.data;
-        console.log("photoInfo = ", photoInfo.data);
-        console.log("user = ", $rootScope.user);
+        // console.log("photoInfo = ", photoInfo.data);
+        // console.log("user = ", $rootScope.user);
         $scope.favorite.userId = $rootScope.user.id;
-        console.log("favorite = ", $scope.favorite);
+        // console.log("favorite = ", $scope.favorite);
         userFactory.addRedditFavorite($scope.favorite, function(returnedData){
             console.log(returnedData);
             $scope.getFavUrls();
@@ -47,17 +48,19 @@ app.controller('redditController', ['userFactory', '$scope', '$rootScope', '$loc
         });
     };
 //---------------------------OPEN PHOTO DIALOG---------------------------
-    $scope.showPhoto = function(ev, clickedPhoto){
+    $scope.showPhoto = function(ev, clickedPhoto, $scope){
         console.log("clicked photo content = ", clickedPhoto);
         $mdDialog.show({
             controller: photoController,
-            templateUrl: '../../partials/redditPhotoPartial.html',
+            templateUrl: '/partials/redditPhotoPartial.html',
             parent: angular.element(document.body),
             targetEvent: ev,
-            clickOutsideToClose:true,
-            fullscreen: $scope.customFullscreen
+            clickOutsideToClose:false,
+            fullscreen:false
         });
         function photoController($scope, $rootScope, $mdDialog){
+            // $scope.getFavUrls = $scope.$parent.$parent.getFavUrls();
+            console.log("parent favs = ",$scope.$scope);
             $scope.userLoggedIn = $rootScope.userLoggedIn;
             $scope.clickedPhoto = clickedPhoto;
 
@@ -69,6 +72,31 @@ app.controller('redditController', ['userFactory', '$scope', '$rootScope', '$loc
             };
             $scope.answer = function(answer) {
                 $mdDialog.hide(answer);
+            };
+            $scope.getFavUrls1 = function(){
+                console.log("get the favs");
+                userFactory.getFavUrls($scope.$parent.user, function(returnedData){
+                    $scope.userFavUrls = returnedData;
+                    console.log("controller returnedData = ", returnedData);
+                });
+            };
+            $scope.getFavUrls1();
+
+            $scope.addFavorite1 = function(photoInfo){
+                $scope.favorite = photoInfo.data;
+                $scope.favorite.userId = $rootScope.user.id;
+                userFactory.addRedditFavorite($scope.favorite, function(returnedData){
+                    // console.log(returnedData);
+                    $scope.getFavUrls1();
+                });
+            };
+
+            $scope.deleteFavorite1 = function(favorite){
+                favorite = {'url':favorite};
+                userFactory.deleteFavorite(favorite, function(returnedData){
+                    console.log("made it back!");
+                    $scope.getFavUrls1();
+                });
             };
         }
     };
