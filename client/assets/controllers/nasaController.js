@@ -5,7 +5,7 @@ app.controller('nasaController', ['userFactory','$scope','$rootScope', '$locatio
         $scope.apiUrl = [];
         $scope.returnedDataArr = [];
         //loop sets date yesterday - 9 days ago
-        for (var x = 1; x <= 20; x++){
+        for (var x = 1; x <= 11; x++){
             $scope.date = (new Date((new Date()).valueOf() - 1000*60*60*24* x )).toISOString().substring(0, 10);
             $scope.apiUrl.push('https://api.nasa.gov/planetary/apod?hd=True&date=' +$scope.date+ '&api_key=DRQGKkFd4I0cAg3uPQJHTAtd9BUjAGCDlDvZFNsB');
         }
@@ -18,6 +18,27 @@ app.controller('nasaController', ['userFactory','$scope','$rootScope', '$locatio
     };
     $scope.getPhotos();
 
+//--------------------CREATE ARRAY WITH USER FAVORITE URLS-------------------
+    $scope.getFavUrls = function(){
+        console.log("got the favs");
+        // console.log("rootScope.user = ",$rootScope.user);
+        userFactory.getFavUrls($rootScope.user, function(returnedData){
+            $scope.userFavUrls = returnedData;
+            console.log("controller returnedData = ", returnedData);
+        });
+    };
+    $scope.getFavUrls();
+
+//-------------------REMOVE FAV WHEN DELETE IS CLICKED-------------------
+    $scope.deleteFavorite = function(favorite){
+        favorite = {'url':favorite};
+        console.log("click!",favorite);
+        userFactory.deleteFavorite(favorite, function(returnedData){
+            console.log("made it back!");
+            $scope.getFavUrls();
+        });
+    };
+
 //-----------------------ADD FAV WHEN HEART IS CLICKED-----------------------
     $scope.addFavorite = function(photoInfo){
         $scope.favorite = photoInfo;
@@ -26,6 +47,7 @@ app.controller('nasaController', ['userFactory','$scope','$rootScope', '$locatio
         console.log("favorite = ", $scope.favorite);
         userFactory.addNasaFavorite($scope.favorite, function(returnedData){
             console.log(returnedData);
+            $scope.getFavUrls();
         });
     };
 
@@ -41,7 +63,7 @@ app.controller('nasaController', ['userFactory','$scope','$rootScope', '$locatio
             clickOutsideToClose:true,
             fullscreen: $scope.customFullscreen
         });
-        function photoController($scope, $mdDialog){
+        function photoController($scope, $mdDialog, $rootScope){
             $scope.userLoggedIn = $rootScope.userLoggedIn;
             $scope.clickedPhoto = clickedPhoto;
             $scope.hide = function() {
@@ -56,6 +78,32 @@ app.controller('nasaController', ['userFactory','$scope','$rootScope', '$locatio
             };
             $scope.answer = function(answer) {
                 $mdDialog.hide(answer);
+            };
+            $scope.getFavUrls1 = function(){
+                console.log("get the favs");
+                userFactory.getFavUrls($scope.$parent.user, function(returnedData){
+                    $scope.userFavUrls = returnedData;
+                    console.log("controller returnedData = ", returnedData);
+                });
+            };
+            $scope.getFavUrls1();
+
+            $scope.addFavorite1 = function(photoInfo){
+                // console.log("photoInfo = ", photoInfo);
+                $scope.favorite = photoInfo;
+                $scope.favorite.userId = $rootScope.user.id;
+                userFactory.addNasaFavorite($scope.favorite, function(returnedData){
+                    // console.log(returnedData);
+                    $scope.getFavUrls1();
+                });
+            };
+
+            $scope.deleteFavorite1 = function(favorite){
+                favorite = {'url':favorite};
+                userFactory.deleteFavorite(favorite, function(returnedData){
+                    console.log("made it back!");
+                    $scope.getFavUrls1();
+                });
             };
         }
     };
