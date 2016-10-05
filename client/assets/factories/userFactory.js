@@ -38,11 +38,11 @@ app.factory('userFactory', ['$http', function($http){
 		this.getFavUrls = function(user, callback){
 			console.log("user = ", user);
 			$http.post('/getFavUrls', user).then(function(returnedData){
-				returnedData = returnedData.data[0]._favorites;
-				console.log(returnedData);
+				favoritesData = returnedData.data[0]._favorites;
+				console.log("userFactory returnedData = ", favoritesData);
 				var arrFavs = [];
-				for (var i = 0; i < returnedData.length ; i++){
-					arrFavs.push(returnedData[i].url);
+				for (var i = 0; i < favoritesData.length ; i++){
+					arrFavs.push(favoritesData[i].url);
 				}
 				callback(arrFavs);
 			});
