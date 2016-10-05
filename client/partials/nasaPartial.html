@@ -9,14 +9,17 @@
 </div>
 <div class="photo_container" ng-cloak>
     <md-content class="md-padding" layout="row">
-        <md-card flex-xs flex-gt-xs="50" layout="column" class="photo_card" ng-repeat="photo in returnedDataArr | orderBy: 'date':true " ng-if="photo.media_type != 'video' ">
+        <md-card flex-xs flex-gt-xs="50" layout="column" class="photo_card" ng-repeat="photo in returnedDataArr | orderBy: 'date':true " ng-if="photo.media_type != 'video' " ng-cloak>
             <md-card-content layout="column" layout-align="space-between" >
                 <img ng-src="{{photo.url}}" class="md-card-image" alt="{{photo.explanation}}" ng-click="showPhoto($event, photo)"/>
                 <md-card-actions layout="row" layout-align="end center">
-                    <md-button class="md-icon-button" aria-label="Favorite" ng-if="userLoggedIn == true" ng-click="addFavorite(photo)">
+                    <md-button class="md-icon-button" aria-label="Remove Favorite"  ng-if="userLoggedIn == true && userFavUrls.includes(photo.url) == true" ng-click="deleteFavorite(photo.url)">
                         <md-icon class="material-icons" ng-style="{color: 'red'}">favorite</md-icon>
                     </md-button>
-                    <md-button class="md-icon-button" aria-label="Favorite" ng-controller="mainController" ng-if="userLoggedIn == false" ng-click="showLoginDialog($event)">
+                    <md-button class="md-icon-button" aria-label="Favorite"  ng-if="userLoggedIn == true && userFavUrls.includes(photo.url) == false" ng-click="addFavorite(photo)">
+                        <md-icon class="material-icons" ng-style="{color: 'white'}">favorite_border</md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="Favorite" ng-if="userLoggedIn == false" ng-controller="mainController" ng-click="showLoginDialog($event)">
                         <md-icon class="material-icons" ng-style="{color: 'gray'}">favorite</md-icon>
                     </md-button>
                     <a download href="{{photo.hdurl}}" title="Download">
