@@ -1,4 +1,6 @@
-app.factory('userFactory', ['$http', function($http){
+angular
+	.module('app')
+	.factory('userFactory', ['$http', function($http){
 
 	function userFactory(){
 		this.registerUser = function(newUser, callback){
