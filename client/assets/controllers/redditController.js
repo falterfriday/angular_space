@@ -1,4 +1,6 @@
-app.controller('redditController', ['userFactory', '$scope', '$rootScope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog' , function(userFactory, $scope, $rootScope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog){
+angular
+    .module('app')
+    .controller('redditController', ['userFactory', '$scope', '$rootScope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog' , function(userFactory, $scope, $rootScope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog){
 
 //------------------------GRAB 25 MOST RECENT POSTS ON R/SPACEPORN------------------------
     $scope.getPhotos = function(){

@@ -1,4 +1,6 @@
-app.controller('profileController', ['userFactory', '$scope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog', '$window', '$rootScope', function(userFactory, $scope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog, $window, $rootScope){
+angular
+    .module('app')
+    .controller('profileController', ['userFactory', '$scope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog', '$window', '$rootScope', function(userFactory, $scope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog, $window, $rootScope){
 
     $scope.getUserFavorites = function(){
         userFactory.getUserFavorites($rootScope.user, function(returnedData){

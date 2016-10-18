@@ -1,4 +1,6 @@
-app.controller('nasaController', ['userFactory','$scope','$rootScope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog' , function(userFactory, $scope, $rootScope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog){
+angular
+    .module('app')
+    .controller('nasaController', ['userFactory','$scope','$rootScope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog' , function(userFactory, $scope, $rootScope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog){
 
 //------------------------GRAB 10 MOST RECENT POSTS FROM APOD------------------------
     $scope.getPhotos = function(){
