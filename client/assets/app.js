@@ -1,10 +1,22 @@
-var app = angular.module('app', ['ngRoute', 'ngCookies', 'ngMaterial', 'ngMessages', '720kb.socialshare']);
-app.config(function($mdThemingProvider) {
+angular
+	.module('app', [
+		'ngRoute',
+		'ngCookies',
+		'ngMaterial',
+		'ngMessages',
+		'720kb.socialshare'
+	]);
+
+angular
+	.module('app')
+	.config(function($mdThemingProvider) {
 	$mdThemingProvider.theme('default')
 	.dark();
 });
 
-app.config(function($routeProvider){
+angular
+	.module('app')
+	.config(function($routeProvider){
 $routeProvider
 	.when('/', {
 		templateUrl: 'partials/mainPartial.html',
