@@ -1,16 +1,50 @@
 angular
     .module('app')
-    .controller('profileController', ['userFactory', '$scope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog', '$window', '$rootScope', function(userFactory, $scope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog, $window, $rootScope){
+    .controller('profileController', profileController);
 
-    $scope.getUserFavorites = function(){
-        userFactory.getUserFavorites($rootScope.user, function(returnedData){
-            console.log('returnedData = ', returnedData);
-            $scope.userInfo = returnedData.data[0];
-            $scope.userFavorites = returnedData.data[0]._favorites;
-            console.log('userFavorites = ', $scope.userFavorites);
-        });
-    };
-    $scope.getUserFavorites();
+profileController.$inject = [
+                    'userFactory',
+                    '$scope',
+                    '$location',
+                    '$cookies',
+                    '$routeParams',
+                    '$timeout',
+                    '$mdSidenav',
+                    '$http',
+                    '$mdDialog',
+                    '$window',
+                    '$rootScope'];
+
+function profileController(
+                        userFactory,
+                        $scope,
+                        $location,
+                        $cookies,
+                        $routeParams,
+                        $timeout,
+                        $mdSidenav,
+                        $http,
+                        $mdDialog,
+                        $window,
+                        $rootScope
+                    ){
+
+        pageLoad();
+
+        function pageLoad() {
+            return getUserFavorites().then(function(){
+                console.log("something is definitely happening");
+            });
+        }
+
+        function getUserFavorites(){
+            return userFactory.getUserFavorites($rootScope.user)
+                .then(function(returnedData){
+                    console.log("pC returnedData = ", returnedData);
+                    $scope.userInfo = returnedData.data[0];
+                    $scope.userFavorites = returnedData.data[0]._favorites;
+                });
+        }
 
 //---------------------------OPEN PHOTO TAB---------------------------
     $scope.showPhoto = function(ev, clickedPhoto) {
@@ -22,7 +56,7 @@ angular
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose:true,
-            fullscreen: $scope.customFullscreen
+            fullscreen: true
         });
         function DialogController($scope, $mdDialog){
             $scope.clickedPhoto = clickedPhoto;
@@ -46,7 +80,7 @@ angular
     $scope.deleteFavorite = function(favorite){
         userFactory.deleteFavorite(favorite, function(returnedData){
             console.log("made it back!");
-            $scope.getUserFavorites();
+            pageLoad();
         });
     };
 
@@ -57,4 +91,4 @@ angular
         originatorEv = ev;
         $mdOpenMenu(ev);
     };
-}]);
+}
