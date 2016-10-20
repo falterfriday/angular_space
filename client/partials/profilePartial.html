@@ -48,7 +48,7 @@
 									</div>
 									<div class="md-tile-content center_tile">
 										<h3>{{favorite.title}}</h3>
-										<h4 class="inset">Photographer: {{favorite.photographer}}</h4>
+										<h4 class="inset" ng-if="favorite.photographer">Photographer: {{favorite.photographer}}</h4>
 										<p class="inset"><a href="{{favorite.hdUrl}}">HD Version</a></p>
 									</div>
 									<md-card-actions  class="right_tile" layout="column" layout-align="center">
