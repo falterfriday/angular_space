@@ -1,6 +1,31 @@
 angular
     .module('app')
-    .controller('redditController', ['userFactory', '$scope', '$rootScope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog' , function(userFactory, $scope, $rootScope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog){
+    .controller('redditController', redditController);
+
+redditController.$inject = [
+                    'userFactory',
+                    '$scope',
+                    '$rootScope',
+                    '$location',
+                    '$cookies',
+                    '$routeParams',
+                    '$timeout',
+                    '$mdSidenav',
+                    '$http',
+                    '$mdDialog'];
+
+function redditController(
+                    userFactory,
+                    $scope,
+                    $rootScope,
+                    $location,
+                    $cookies,
+                    $routeParams,
+                    $timeout,
+                    $mdSidenav,
+                    $http,
+                    $mdDialog
+                        ){
 
 //------------------------GRAB 25 MOST RECENT POSTS ON R/SPACEPORN------------------------
     $scope.getPhotos = function(){
@@ -109,4 +134,4 @@ angular
     originatorEv = ev;
     $mdOpenMenu(ev);
     };
-}]);
+}
