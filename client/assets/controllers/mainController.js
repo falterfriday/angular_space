@@ -1,6 +1,33 @@
 angular
     .module('app')
-    .controller('mainController', ['userFactory', '$scope', '$rootScope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$window', '$mdDialog', function(userFactory, $scope, $rootScope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $window, $mdDialog){
+    .controller('mainController', mainController);
+
+mainController.$inject = [
+                    'userFactory',
+                    '$scope',
+                    '$rootScope',
+                    '$location',
+                    '$cookies',
+                    '$routeParams',
+                    '$timeout',
+                    '$mdSidenav',
+                    '$http',
+                    '$window',
+                    '$mdDialog'];
+
+function mainController(
+                    userFactory,
+                    $scope,
+                    $rootScope,
+                    $location,
+                    $cookies,
+                    $routeParams,
+                    $timeout,
+                    $mdSidenav,
+                    $http,
+                    $window,
+                    $mdDialog
+                ){
 
 //-----------------------------LOGIN-----------------------------
     $rootScope.checkUserState = function(){
@@ -82,4 +109,4 @@ angular
     $scope.cancel = function() {
         $mdDialog.cancel();
     };
-}]);
+}
