@@ -1,6 +1,31 @@
 angular
     .module('app')
-    .controller('nasaController', ['userFactory','$scope','$rootScope', '$location', '$cookies', '$routeParams', '$timeout', '$mdSidenav', '$http', '$mdDialog' , function(userFactory, $scope, $rootScope, $location, $cookies, $routeParams, $timeout, $mdSidenav, $http, $mdDialog){
+    .controller('nasaController', nasaController);
+
+ nasaController.$inject = [
+                    'userFactory',
+                    '$scope',
+                    '$rootScope',
+                    '$location',
+                    '$cookies',
+                    '$routeParams',
+                    '$timeout',
+                    '$mdSidenav',
+                    '$http',
+                    '$mdDialog'];
+
+function nasaController(
+                    userFactory,
+                    $scope,
+                    $rootScope,
+                    $location,
+                    $cookies,
+                    $routeParams,
+                    $timeout,
+                    $mdSidenav,
+                    $http,
+                    $mdDialog
+                ){
 
 //------------------------GRAB 10 MOST RECENT POSTS FROM APOD------------------------
     $scope.getPhotos = function(){
@@ -22,7 +47,7 @@ angular
 
 //--------------------CREATE ARRAY WITH USER FAVORITE URLS-------------------
     $scope.getFavUrls = function(){
-        console.log("got the favs");
+        // console.log("got the favs");
         // console.log("rootScope.user = ",$rootScope.user);
         userFactory.getFavUrls($rootScope.user, function(returnedData){
             $scope.userFavUrls = returnedData;
@@ -117,4 +142,4 @@ angular
         originatorEv = ev;
         $mdOpenMenu(ev);
     };
-}]);
+};
