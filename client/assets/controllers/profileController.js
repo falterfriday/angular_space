@@ -39,11 +39,11 @@ function profileController(
 
         function getUserFavorites(){
             return userFactory.getUserFavorites($rootScope.user)
-                .then(function(returnedData){
-                    console.log("pC returnedData = ", returnedData);
-                    $scope.userInfo = returnedData.data[0];
-                    $scope.userFavorites = returnedData.data[0]._favorites;
-                });
+            .then(function(returnedData){
+                console.log("pC returnedData = ", returnedData);
+                $scope.userInfo = returnedData.data[0];
+                $scope.userFavorites = returnedData.data[0]._favorites;
+            });
         }
 
 //---------------------------OPEN PHOTO TAB---------------------------
