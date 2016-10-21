@@ -78,12 +78,20 @@ function mainController(
     };
 
     $scope.loginUser = function(){
-        // console.log($scope.existingUser);
-        userFactory.loginUser($scope.existingUser, function(returnedData){
-            if(returnedData.errors){
-                $scope.login = {};
+        console.log("submitted existingUser = ", $scope.existingUser);
+        return userFactory.loginUser($scope.existingUser)
+        .then(function(returnedUser){
+            console.log("returnedUser = ", returnedUser);
+            if(returnedUser.error){
+                console.log("login errors = ", returnedUser.error);
+                $scope.existingUser = {};
             } else {
-                $cookies.putObject('user',{first_name:returnedData.first_name, last_name:returnedData.last_name, id:returnedData._id});
+                $cookies.putObject(
+                    'user',{
+                        first_name:returnedUser.first_name,
+                        last_name:returnedUser.last_name,
+                        id:returnedUser._id
+                    });
                 $scope.hide();
             }
         });
@@ -91,17 +99,24 @@ function mainController(
 
     $scope.registerUser = function(){
         console.log($scope.newUser);
-        userFactory.registerUser($scope.newUser, function(returnedData){
-        // console.log('returnedData = ', returnedData);
-            if(returnedData.errors){
+        return userFactory.registerUser($scope.newUser)
+        .then(function(returnedUser){
+            console.log("returnedUser = ", returnedUser);
+            if(returnedUser.errors){
                 $scope.errors = returnedData;
                 $scope.newUser = {};
             } else {
-                $cookies.putObject('user',{first_name:returnedData.first_name, last_name:returnedData.last_name, id:returnedData._id});
+                $cookies.putObject(
+                    'user', {
+                        first_name:returnedUser.first_name,
+                        last_name:returnedUser.last_name,
+                        id:returnedUser._id
+                    });
                 $rootScope.checkUserState();
                 $scope.hide();
             }
         });
+
     };
     $scope.hide = function(){
         $mdDialog.hide();
