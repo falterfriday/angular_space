@@ -1,5 +1,4 @@
 <md-dialog aria-label="Login" ng-controller="mainController">
-	<form ng-cloak>
 		<md-toolbar>
 			<div class="md-toolbar-tools">
 				<h2>Please Log In</h2>
@@ -12,46 +11,48 @@
 		<md-dialog-content layout="row">
 
 <!-- - - - - - - - - - - - - -REGISTRATION- - - - - - - - - -  -->
-			<div class="md-dialog-content registration" layout="column">
-				<md-input-container>
-					<label>First Name</label>
-					<input required ng-model="newUser.first_name">
-				</md-input-container>
-				<md-input-container>
-					<label>Last Name</label>
-					<input required ng-model="newUser.last_name">
-				</md-input-container>
-				<md-input-container>
-					<label>Email</label>
-					<input required ng-model="newUser.email">
-				</md-input-container>
-				<md-input-container>
-					<label>Password</label>
-					<input required type="password" ng-model="newUser.password">
-				</md-input-container>
-				<md-input-container>
-					<label>Confirm Password</label>
-					<input required type="password" ng-model="newUser.pw_conf">
-				</md-input-container>
-				<md-dialog-actions layout="row">
-					<md-button class="md-raised" ng-click="registerUser()" md-autofocus>Register</md-button>
-				</md-dialog-actions>
-			</div>
+				<div class="md-dialog-content registration" layout="column">
+					<form name="newUser" ng-submit="registerUser(); answer()">
+						<md-input-container class="md-block">
+							<label>First Name</label>
+							<input required ng-model="newUser.first_name">
+						</md-input-container>
+						<md-input-container class="md-block">
+							<label>Last Name</label>
+							<input required ng-model="newUser.last_name">
+						</md-input-container>
+						<md-input-container class="md-block">
+							<label>Email</label>
+							<input required ng-model="newUser.email" type="email">
+						</md-input-container>
+						<md-input-container class="md-block">
+							<label>Password</label>
+							<input required type="password" ng-model="newUser.password">
+						</md-input-container>
+						<md-input-container class="md-block">
+							<label>Confirm Password</label>
+							<input required type="password" ng-model="newUser.pw_conf">
+						</md-input-container>
+						<md-input-container>
+							<md-button type="submit" class="md-button md-raised" ng-disabled="newUser.$invalid">Register</md-button>
+						</md-input-container>
+					</form>
+				</div>
 <!-- - - - - - - - - - - - - - LOGIN- - - - - - - - - - - - - -  -->
-			<div class="md-dialog-content" layout="column">
-				<md-input-container>
-					<label>Email</label>
-					<input required ng-model="existingUser.email">
-				</md-input-container>
-				<md-input-container>
-					<label>Password</label>
-					<input required type="password" ng-model="existingUser.password">
-				</md-input-container>
-				<md-dialog-actions layout="row">
-					<span flex></span>
-					<md-button class="md-raised" ng-click="loginUser(); answer()">Login</md-button>
-				</md-dialog-actions>
-			</div>
+				<div class="md-dialog-content" layout="column">
+					<form name="existingUser"  ng-submit="loginUser(); answer()">
+						<md-input-container class="md-block">
+							<label>Email</label>
+							<input required ng-model="existingUser.email" type="email">
+						</md-input-container>
+						<md-input-container class="md-block">
+							<label>Password</label>
+							<input required type="password" ng-model="existingUser.password">
+						</md-input-container>
+						<md-input-container>
+							<md-button type="submit" class="md-button md-raised" ng-disabled="existingUser.$invalid">Login</md-button>
+						</md-input-container>
+					</form>
+				</div>
 		</md-dialog-content>
-	</form>
 </md-dialog>
