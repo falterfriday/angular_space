@@ -8,45 +8,17 @@ userFactory.$inject = ['$http'];
 function userFactory($http){
 
 	return {
-		registerUser: registerUser,
+		getFavUrls: getFavUrls,
 		loginUser: loginUser,
+		registerUser: registerUser,
 		addNasaFavorite: addNasaFavorite,
 		addRedditFavorite: addRedditFavorite,
-		getFavUrls: getFavUrls,
 		getUserFavorites: getUserFavorites,
 		deleteFavorite: deleteFavorite
 	};
 
 ///////////////////////////////////////////////////////////////////////
 
-	function registerUser(newUser, callback){
-		// console.log("uF - newUser = ", newUser);
-		$http.post('/create_user', newUser).then(function(returnedData){
-			// console.log("uF returnedData = ", returnedData.data);
-			if(typeof(callback) == "function"){
-				callback(returnedData.data);
-			}
-		});
-	}
-	function loginUser(existingUser, callback){
-		// console.log("uF - loginUser = ", existingUser);
-		$http.post('/login', existingUser).then(function(returnedData){
-			// console.log("uF - returnedData = ", returnedData.data);
-			callback(returnedData.data);
-		});
-	}
-	function addNasaFavorite(favorite, callback){
-		// console.log("uF - favorite = ", favorite);
-		$http.post('/addNasaFavorite', favorite).then(function(returnedData){
-			callback(returnedData);
-		});
-	}
-	function addRedditFavorite(favorite, callback){
-		// console.log("uF - favorite = ", favorite);
-		$http.post('/addRedditFavorite', favorite).then(function(returnedData){
-			callback(returnedData);
-		});
-	}
 	function getUserFavorites(user){
 		console.log("uF user = ", user);
 		return $http.post('/getUserFavorites', user)
@@ -58,8 +30,49 @@ function userFactory($http){
 			return returnedData;
 		}
 		function getDataFailed(error){
-			logger.error(`Failed to retrieve user favorites. ${error.data}`);
+			logger.error(`Failed to retrieve user favorites! ${error.data}`);
 		}
+	}
+	function loginUser(existingUser){
+		console.log("uF - loginUser = ", existingUser);
+		return $http.post('/login', existingUser)
+			.then(getUserSuccess)
+			.catch(getUserFail);
+
+		function getUserSuccess(returnedUser){
+			console.log("returnedUser = ", returnedUser);
+			return returnedUser.data;
+		}
+		function getUserFail(error){
+			logger.error(`Failed to login user! ${error.data}`);
+		}
+	}
+	function registerUser(newUser){
+		// console.log("uF - newUser = ", newUser);
+		return $http.post('/create_user', newUser)
+			.then(registerUserSuccess)
+			.catch(registerUserFail);
+
+		function registerUserSuccess(returnedUser){
+			console.log("returnedUser = ", returnedUser);
+			return returnedUser.data;
+		}
+		function registerUserFail(error){
+			logger.error(`Failed to register user! ${error.data}`);
+		}
+	}
+
+	function addNasaFavorite(favorite, callback){
+		// console.log("uF - favorite = ", favorite);
+		$http.post('/addNasaFavorite', favorite).then(function(returnedData){
+			callback(returnedData);
+		});
+	}
+	function addRedditFavorite(favorite, callback){
+		// console.log("uF - favorite = ", favorite);
+		$http.post('/addRedditFavorite', favorite).then(function(returnedData){
+			callback(returnedData);
+		});
 	}
 
 	function getFavUrls(user, callback){
