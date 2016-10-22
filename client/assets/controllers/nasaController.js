@@ -51,7 +51,7 @@ function nasaController(
         // console.log("rootScope.user = ",$rootScope.user);
         userFactory.getFavUrls($rootScope.user, function(returnedData){
             $scope.userFavUrls = returnedData;
-            console.log("controller returnedData = ", returnedData);
+            // console.log("controller returnedData = ", returnedData);
         });
     };
     $scope.getFavUrls();
@@ -59,9 +59,9 @@ function nasaController(
 //-------------------REMOVE FAV WHEN DELETE IS CLICKED-------------------
     $scope.deleteFavorite = function(favorite){
         favorite = {'url':favorite};
-        console.log("click!",favorite);
+        // console.log("click!",favorite);
         userFactory.deleteFavorite(favorite, function(returnedData){
-            console.log("made it back!");
+            // console.log("made it back!");
             $scope.getFavUrls();
         });
     };
@@ -69,19 +69,19 @@ function nasaController(
 //-----------------------ADD FAV WHEN HEART IS CLICKED-----------------------
     $scope.addFavorite = function(photoInfo){
         $scope.favorite = photoInfo;
-        console.log("user = ", $rootScope.user);
+        // console.log("user = ", $rootScope.user);
         $scope.favorite.userId = $rootScope.user.id;
-        console.log("favorite = ", $scope.favorite);
+        // console.log("favorite = ", $scope.favorite);
         userFactory.addNasaFavorite($scope.favorite, function(returnedData){
-            console.log(returnedData);
+            // console.log(returnedData);
             $scope.getFavUrls();
         });
     };
 
 //---------------------------OPEN PHOTO TAB---------------------------
     $scope.showPhoto = function(ev, clickedPhoto) {
-        console.log("photo clicked");
-        console.log("linked content = ", clickedPhoto);
+        // console.log("photo clicked");
+        // console.log("linked content = ", clickedPhoto);
         $mdDialog.show({
             controller: photoController,
             templateUrl: '../../partials/nasaPhotoPartial.html',
@@ -107,10 +107,10 @@ function nasaController(
                 $mdDialog.hide(answer);
             };
             $scope.getFavUrls1 = function(){
-                console.log("get the favs");
+                // console.log("get the favs");
                 userFactory.getFavUrls($scope.$parent.user, function(returnedData){
                     $scope.userFavUrls = returnedData;
-                    console.log("controller returnedData = ", returnedData);
+                    // console.log("controller returnedData = ", returnedData);
                 });
             };
             $scope.getFavUrls1();
@@ -128,7 +128,7 @@ function nasaController(
             $scope.deleteFavorite1 = function(favorite){
                 favorite = {'url':favorite};
                 userFactory.deleteFavorite(favorite, function(returnedData){
-                    console.log("made it back!");
+                    // console.log("made it back!");
                     $scope.getFavUrls1();
                 });
             };
@@ -142,4 +142,4 @@ function nasaController(
         originatorEv = ev;
         $mdOpenMenu(ev);
     };
-};
+}
