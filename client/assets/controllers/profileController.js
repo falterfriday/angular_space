@@ -33,23 +33,27 @@ function profileController(
 
         function pageLoad() {
             return getUserFavorites().then(function(){
-                console.log("something is definitely happening");
+                // console.log("something is definitely happening");
             });
         }
 
         function getUserFavorites(){
             return userFactory.getUserFavorites($rootScope.user)
             .then(function(returnedData){
-                console.log("pC returnedData = ", returnedData);
-                $scope.userInfo = returnedData.data[0];
-                $scope.userFavorites = returnedData.data[0]._favorites;
+                if (returnedData.data.length === 0) {
+                    $location.url('/');
+                } else {
+                    // console.log("pC returnedData = ", returnedData);
+                    $scope.userInfo = returnedData.data[0];
+                    $scope.userFavorites = returnedData.data[0]._favorites;
+                }
             });
         }
 
 //---------------------------OPEN PHOTO TAB---------------------------
     $scope.showPhoto = function(ev, clickedPhoto) {
-        console.log("photo clicked");
-        console.log("linked content = ", clickedPhoto);
+        // console.log("photo clicked");
+        // console.log("linked content = ", clickedPhoto);
         $mdDialog.show({
             controller: DialogController,
             templateUrl: '../../partials/profilePhotoPartial.html',
@@ -71,7 +75,7 @@ function profileController(
             };
             $scope.deleteFavorite = function(favorite){
                 userFactory.deleteFavorite(favorite, function(returnedData){
-                    console.log("made it back!");
+                    // console.log("made it back!");
                     $mdDialog.cancel();
                 });
             };
@@ -79,7 +83,7 @@ function profileController(
     };
     $scope.deleteFavorite = function(favorite){
         userFactory.deleteFavorite(favorite, function(returnedData){
-            console.log("made it back!");
+            // console.log("made it back!");
             pageLoad();
         });
     };
