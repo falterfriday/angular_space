@@ -20,13 +20,13 @@ function userFactory($http){
 ///////////////////////////////////////////////////////////////////////
 
 	function getUserFavorites(user){
-		console.log("uF user = ", user);
+		// console.log("uF user = ", user);
 		return $http.post('/getUserFavorites', user)
 			.then(getDataSuccess)
 			.catch(getDataFailed);
 
 		function getDataSuccess(returnedData){
-			console.log("returnedData = ", returnedData);
+			// console.log("returnedData = ", returnedData);
 			return returnedData;
 		}
 		function getDataFailed(error){
@@ -34,17 +34,18 @@ function userFactory($http){
 		}
 	}
 	function loginUser(existingUser){
-		console.log("uF - loginUser = ", existingUser);
+		// console.log("uF - loginUser = ", existingUser);
 		return $http.post('/login', existingUser)
 			.then(getUserSuccess)
 			.catch(getUserFail);
 
 		function getUserSuccess(returnedUser){
-			console.log("returnedUser = ", returnedUser);
+			// console.log("returnedUser = ", returnedUser);
 			return returnedUser.data;
 		}
 		function getUserFail(error){
-			logger.error(`Failed to login user! ${error.data}`);
+			// console.log(`Failed to login user! ${error.data}`);
+			return;
 		}
 	}
 	function registerUser(newUser){
@@ -54,7 +55,7 @@ function userFactory($http){
 			.catch(registerUserFail);
 
 		function registerUserSuccess(returnedUser){
-			console.log("returnedUser = ", returnedUser);
+			// console.log("returnedUser = ", returnedUser);
 			return returnedUser.data;
 		}
 		function registerUserFail(error){
@@ -76,9 +77,9 @@ function userFactory($http){
 	}
 
 	function getFavUrls(user, callback){
-		console.log("user = ", user);
+		// console.log("user = ", user);
 		$http.post('/getFavUrls', user).then(function(returnedData){
-			console.log("uF returnedData = ", returnedData);
+			// console.log("uF returnedData = ", returnedData);
 			var arrFavs = [];
 			if (returnedData.data.length > 0){
 				favoritesData = returnedData.data[0]._favorites;
@@ -91,7 +92,7 @@ function userFactory($http){
 		});
 	}
 	function deleteFavorite(favorite, callback){
-		console.log('uF delete', favorite);
+		// console.log('uF delete', favorite);
 		$http.post('/deleteFavorite', favorite).then(function(returnedData){
 			callback(returnedData);
 		});
