@@ -78,12 +78,12 @@ function mainController(
     };
 
     $scope.loginUser = function(){
-        console.log("submitted existingUser = ", $scope.existingUser);
+        // console.log("submitted existingUser = ", $scope.existingUser);
         return userFactory.loginUser($scope.existingUser)
         .then(function(returnedUser){
-            console.log("returnedUser = ", returnedUser);
+            // console.log("returnedUser = ", returnedUser);
             if(returnedUser.error){
-                console.log("login errors = ", returnedUser.error);
+                // console.log("login errors = ", returnedUser.error);
                 $scope.existingUser = {};
             } else {
                 $cookies.putObject(
@@ -98,10 +98,10 @@ function mainController(
     };
 
     $scope.registerUser = function(){
-        console.log($scope.newUser);
+        // console.log($scope.newUser);
         return userFactory.registerUser($scope.newUser)
         .then(function(returnedUser){
-            console.log("returnedUser = ", returnedUser);
+            // console.log("returnedUser = ", returnedUser);
             if(returnedUser.errors){
                 $scope.errors = returnedData;
                 $scope.newUser = {};
