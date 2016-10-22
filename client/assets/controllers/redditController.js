@@ -44,7 +44,7 @@ function redditController(
 
 //--------------------CREATE ARRAY WITH USER FAVORITE URLS-------------------
     $scope.getFavUrls = function(){
-        console.log("get the favs");
+        // console.log("get the favs");
         // console.log("rootScope.user = ",$rootScope.user);
         userFactory.getFavUrls($rootScope.user, function(returnedData){
             $scope.userFavUrls = returnedData;
@@ -60,7 +60,7 @@ function redditController(
         $scope.favorite.userId = $rootScope.user.id;
         // console.log("favorite = ", $scope.favorite);
         userFactory.addRedditFavorite($scope.favorite, function(returnedData){
-            console.log(returnedData);
+            // console.log(returnedData);
             $scope.getFavUrls();
         });
     };
@@ -68,15 +68,15 @@ function redditController(
 //-------------------REMOVE FAV WHEN DELETE IS CLICKED-------------------
     $scope.deleteFavorite = function(favorite){
         favorite = {'url':favorite};
-        console.log("click!",favorite);
+        // console.log("click!",favorite);
         userFactory.deleteFavorite(favorite, function(returnedData){
-            console.log("made it back!");
+            // console.log("made it back!");
             $scope.getFavUrls();
         });
     };
 //---------------------------OPEN PHOTO DIALOG---------------------------
     $scope.showPhoto = function(ev, clickedPhoto, $scope){
-        console.log("clicked photo content = ", clickedPhoto);
+        // console.log("clicked photo content = ", clickedPhoto);
         $mdDialog.show({
             controller: photoController,
             templateUrl: '/partials/redditPhotoPartial.html',
@@ -87,7 +87,7 @@ function redditController(
         });
         function photoController($scope, $rootScope, $mdDialog){
             // $scope.getFavUrls = $scope.$parent.$parent.getFavUrls();
-            console.log("parent favs = ",$scope.$scope);
+            // console.log("parent favs = ",$scope.$scope);
             $scope.userLoggedIn = $rootScope.userLoggedIn;
             $scope.clickedPhoto = clickedPhoto;
 
@@ -101,10 +101,10 @@ function redditController(
                 $mdDialog.hide(answer);
             };
             $scope.getFavUrls1 = function(){
-                console.log("get the favs");
+                // console.log("get the favs");
                 userFactory.getFavUrls($scope.$parent.user, function(returnedData){
                     $scope.userFavUrls = returnedData;
-                    console.log("controller returnedData = ", returnedData);
+                    // console.log("controller returnedData = ", returnedData);
                 });
             };
             $scope.getFavUrls1();
@@ -121,7 +121,7 @@ function redditController(
             $scope.deleteFavorite1 = function(favorite){
                 favorite = {'url':favorite};
                 userFactory.deleteFavorite(favorite, function(returnedData){
-                    console.log("made it back!");
+                    // console.log("made it back!");
                     $scope.getFavUrls1();
                 });
             };
