@@ -126,7 +126,7 @@ md-toolbar:not(.md-menu-toolbar) {
 	background-color: #000000;
 	min-height: 1rem;
 	border-bottom: solid #262626 1px;
-	padding: 0.75rem
+	padding: 0.6vh
 }
 .md-sidenav-left, md-sidenav {
 	background-color: rgba(0, 0, 0, 0.75);
@@ -153,7 +153,14 @@ a {
 	text-decoration: none;
 	color: #ffffff;
 }
-
+#copyright {
+	text-align: center;
+	margin-top: 68vh;
+	color: #343434;
+}
+#copyright p {
+	margin: 0;
+}
 /************NASA PARTIAL************/
 #nasa_main_banner {
 	position: relative;
