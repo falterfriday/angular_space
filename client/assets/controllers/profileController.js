@@ -30,7 +30,7 @@ function profileController(
                     ){
 
         pageLoad();
-
+        
         function pageLoad() {
             return getUserFavorites().then(function(){
                 // console.log("something is definitely happening");
