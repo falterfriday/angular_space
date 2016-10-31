@@ -3,11 +3,8 @@
 This app was designed with:
 
 * Design: Angular Material
-
 * Front-end: AngularJS
-
 * Back-end: Node.JS & Express.JS
-
 * Database: MongoDB
 
 
