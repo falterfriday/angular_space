@@ -29,16 +29,15 @@ function nasaController(
 
 //------------------------GRAB 10 MOST RECENT POSTS FROM APOD------------------------
     $scope.getPhotos = function(){
-        $scope.apiUrl = [];
+        var apiUrl = [];
         $scope.returnedDataArr = [];
-        //loop sets date yesterday - 9 days ago
-        for (var x = 1; x <= 11; x++){
-            $scope.date = (new Date((new Date()).valueOf() - 1000*60*60*24* x )).toISOString().substring(0, 10);
-            $scope.apiUrl.push('https://api.nasa.gov/planetary/apod?hd=True&date=' +$scope.date+ '&api_key=DRQGKkFd4I0cAg3uPQJHTAtd9BUjAGCDlDvZFNsB');
+
+        for (var x = 1; x <= 10; x++){
+            var date = (new Date( new Date() - 1000*60*60*24* x ).toISOString() ).substring(0,10);
+            apiUrl.push('https://api.nasa.gov/planetary/apod?hd=True&date=' + date + '&api_key=DRQGKkFd4I0cAg3uPQJHTAtd9BUjAGCDlDvZFNsB');
         }
-        // loop grabs the url from the photo array and gets the associated data
-        for (var y = 0; y < $scope.apiUrl.length; y++){
-            $http.get( $scope.apiUrl[y] ).then(function(returnedData){
+        for (var y = 0; y < apiUrl.length; y++){
+            $http.get( apiUrl[y] ).then(function(returnedData){
                 $scope.returnedDataArr.push(returnedData.data);
             });
         }
