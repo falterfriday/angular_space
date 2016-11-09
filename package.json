@@ -17,7 +17,8 @@
     "mongoose": "^4.5.10",
     "ng-parallax": "^1.0.1",
     "parallax": "0.0.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "protractor": "^4.0.10"
   },
   "devDependencies": {}
 }
