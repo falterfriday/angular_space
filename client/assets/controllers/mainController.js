@@ -103,7 +103,7 @@ function mainController(
         .then(function(returnedUser){
             // console.log("returnedUser = ", returnedUser);
             if(returnedUser.errors){
-                $scope.errors = returnedData;
+                $scope.errors = returnedUser;
                 $scope.newUser = {};
             } else {
                 $cookies.putObject(
