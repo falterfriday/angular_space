@@ -14,3 +14,6 @@ Details:
 * Node: v6.7.0
 * Express: v4.14.0
 * MongoDB: 3.2.7
+
+Testing:
+* Protractor: v4.0.10
