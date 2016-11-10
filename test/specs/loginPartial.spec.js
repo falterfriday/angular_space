@@ -8,23 +8,28 @@ describe('The login partial is functional', function(){
         expect(dialog.getText()).toContain('Please Log In');
     });
     it('should have first_name text input fields', function(){
-        first_name = element(by.model('newUser.first_name'));
-        expect(first_name.isPresent()).toEqual(true);
+        var first_name = element(by.model('newUser.first_name'));
+        first_name.sendKeys('Test');
+        expect(first_name.getAttribute('value')).toEqual('Test');
     });
     it('should have last_name text input fields', function(){
-        last_name = element(by.model('newUser.last_name'));
-        expect(last_name.isPresent()).toEqual(true);
+        var last_name = element(by.model('newUser.last_name'));
+        last_name.sendKeys('User');
+        expect(last_name.getAttribute('value')).toEqual('User');
     });
     it('should have email text input fields', function(){
-        email = element(by.model('newUser.email'));
-        expect(email.isPresent()).toEqual(true);
+        var email = element(by.model('newUser.email'));
+        email.sendKeys('email@email.com');
+        expect(email.getAttribute('value')).toEqual('email@email.com');
     });
     it('should have email text input fields', function(){
-        password = element(by.model('newUser.password'));
-        expect(password.isPresent()).toEqual(true);
+        var password = element(by.model('newUser.password'));
+        password.sendKeys('abcd1234');
+        expect(password.getAttribute('value')).toEqual('abcd1234');
     });
     it('should have email text input fields', function(){
-        pw_conf = element(by.model('newUser.pw_conf'));
-        expect(pw_conf.isPresent()).toEqual(true);
+        var pw_conf = element(by.model('newUser.pw_conf'));
+        pw_conf.sendKeys('abcd1234');
+        expect(pw_conf.getAttribute('value')).toEqual('abcd1234');
     });
 });
