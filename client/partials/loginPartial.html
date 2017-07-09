@@ -34,7 +34,7 @@
 							<input  ng-minlength="8" required type="password" ng-model="newUser.pw_conf">
 						</md-input-container>
 						<md-input-container>
-							<md-button type="submit" class="md-button md-raised" ng-disabled="newUser.$invalid">Register</md-button>
+							<md-button id="reg_button" type="submit" class="md-button md-raised" ng-disabled="newUser.$invalid">Register</md-button>
 						</md-input-container>
 					</form>
 				</div>
@@ -50,7 +50,7 @@
 							<input required type="password" ng-model="existingUser.password">
 						</md-input-container>
 						<md-input-container>
-							<md-button type="submit" class="md-button md-raised" ng-disabled="existingUser.$invalid">Login</md-button>
+							<md-button id="log_button" type="submit" class="md-button md-raised" ng-disabled="existingUser.$invalid">Login</md-button>
 						</md-input-container>
 					</form>
 				</div>

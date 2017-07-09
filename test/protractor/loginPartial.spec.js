@@ -3,7 +3,7 @@ describe('The login partial is functional', function(){
         browser.get('http://localhost:8000/');
         element(by.css('.login_reg_button')).click();
     });
-    it('should show the login partial when login button is clicked ', function(){
+    it('should show the login partial when login button is clicked', function(){
         var dialog = element(by.css('.md-toolbar-tools'));
         expect(dialog.getText()).toContain('Please Log In');
     });
