@@ -4,6 +4,7 @@ angular
 
  nasaController.$inject = [
                     'userFactory',
+                    'photoFactory'
                     '$scope',
                     '$rootScope',
                     '$location',
@@ -16,6 +17,7 @@ angular
 
 function nasaController(
                     userFactory,
+                    photoFactory,
                     $scope,
                     $rootScope,
                     $location,
