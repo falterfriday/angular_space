@@ -4,6 +4,7 @@ angular
 
 redditController.$inject = [
                     'userFactory',
+                    'photoFactory'
                     '$scope',
                     '$rootScope',
                     '$location',
@@ -16,6 +17,7 @@ redditController.$inject = [
 
 function redditController(
                     userFactory,
+                    photoFactory
                     $scope,
                     $rootScope,
                     $location,
