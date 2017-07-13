@@ -25,6 +25,9 @@ function photoFactory($http){
                 $scope.returnedDataArr.push(returnedData.data);
             });
         }
+        console.log("returnedDataArr");
+        console.log(returnedDataArr);
+        return returnedDataArr;
     }
 
     function getRedditPhotos(){
