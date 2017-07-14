@@ -14,7 +14,7 @@ function photoFactory($http){
 
     function getNasaPhotos(){
         var apiUrl = [];
-        $scope.returnedDataArr = [];
+        var returnedDataArr = [];
 
         for (var x = 1; x <= 10; x++){
             var date = (new Date( new Date() - 1000*60*60*24* x ).toISOString() ).substring(0,10);
@@ -22,11 +22,11 @@ function photoFactory($http){
         }
         for (var y = 0; y < apiUrl.length; y++){
             $http.get( apiUrl[y] ).then(function(returnedData){
-                $scope.returnedDataArr.push(returnedData.data);
+                returnedDataArr.push(returnedData.data);
             });
         }
-        console.log("returnedDataArr");
-        console.log(returnedDataArr);
+        //console.log("returnedDataArr");
+        //console.log(returnedDataArr);
         return returnedDataArr;
     }
 
