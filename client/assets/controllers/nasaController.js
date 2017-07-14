@@ -32,7 +32,7 @@ function nasaController(
 //------------------------GRAB 10 MOST RECENT POSTS FROM APOD------------------------
     $scope.getPhotos = function(){
         // var apiUrl = [];
-        // $scope.returnedDataArr = [];
+        //$scope.returnedDataArr = [];
         //
         // for (var x = 1; x <= 10; x++){
         //     var date = (new Date( new Date() - 1000*60*60*24* x ).toISOString() ).substring(0,10);
@@ -43,8 +43,10 @@ function nasaController(
         //         $scope.returnedDataArr.push(returnedData.data);
         //     });
         // }
-        photoFactory.getNasaPhotos(function(){
+        photoFactory.getNasaPhotos(function(returnedDataArr){
             $scope.returnedDataArr = returnedDataArr;
+            console.log("///////"*10);
+            console.log(returnedDataArr);
         });
     };
     $scope.getPhotos();
