@@ -14,28 +14,18 @@ function photoFactory($http){
 
     function getNasaPhotos(){
         console.log("hit the photoFactory")
-        var apiUrl = [];
         var returnedDataArr = [];
+        var apiUrlString;
+        var date;
 
         for (var x = 1; x <= 10; x++){
-            var date = (new Date( new Date() - 1000*60*60*24* x ).toISOString() ).substring(0,10);
-            apiUrl.push('https://api.nasa.gov/planetary/apod?hd=True&date=' + date + '&api_key=DRQGKkFd4I0cAg3uPQJHTAtd9BUjAGCDlDvZFNsB');
-            var urlKey = `url - ${x}`
-            returnedDataArr[urlKey] = 'https://api.nasa.gov/planetary/apod?hd=True&date=' + date + '&api_key=DRQGKkFd4I0cAg3uPQJHTAtd9BUjAGCDlDvZFNsB';
+            date = (new Date( new Date() - 1000*60*60*24* x ).toISOString()).substring(0,10);            
+            apiUrlString = 'https://api.nasa.gov/planetary/apod?hd=True&date=' + date + '&api_key=DRQGKkFd4I0cAg3uPQJHTAtd9BUjAGCDlDvZFNsB';
+            $http.get(apiUrlString).then(function(returnedData){
+                returnedDataArr.push(returnedData.data);
+            });
         }
-
-        // for (var y = 0; y < apiUrl.length; y++){
-        //     $http.get( apiUrl[y] ).then(function(returnedData){
-        //         returnedDataArr.push(returnedData.data);
-        //     });
-        // }
-
-        // returnedDataArr = {
-        //     "1":"else is working",
-        //     "2":"warble garble"
-        // }
-        //console.log("returnedDataArr");
-        console.log(returnedDataArr);
+        console.log("returnedDataArr from photoFactory");
         return returnedDataArr;
     }
 

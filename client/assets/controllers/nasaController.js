@@ -31,7 +31,6 @@ function nasaController(
 
 //------------------------GRAB 10 MOST RECENT POSTS FROM APOD------------------------
     $scope.getPhotos = function(){
-        console.log("aiwleuhfawieufhawieufhawiefuh")
         var apiUrl = [];
         $scope.returnedDataArr = [];
 
@@ -47,15 +46,15 @@ function nasaController(
         }
 
 
-        photoFactory.getNasaPhotos(function(){
+        photoFactory.getNasaPhotos(function(returnedStuff){
             //$scope.returnedDataArr = returnedDataArr;
             console.log("///////"*10);
             console.log(returnedStuff);
-            return $scope.returnedDataArr
+            //return $scope.returnedDataArr
 
         });
-    };
-    $scope.getPhotos();
+    }();
+    //$scope.getPhotos();
 
 //--------------------CREATE ARRAY WITH USER FAVORITE URLS-------------------
     $scope.getFavUrls = function(){
