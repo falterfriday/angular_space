@@ -29,30 +29,12 @@ function nasaController(
                     $mdDialog
                 ){
 
-//------------------------GRAB 10 MOST RECENT POSTS FROM APOD------------------------
+//--------------GRAB 10 MOST RECENT POSTS FROM APO---------------
     $scope.getPhotos = function(){
-        var apiUrl = [];
-        //$scope.returnedDataArr = [];
-
-        // for (var x = 1; x <= 10; x++){
-        //     var date = (new Date( new Date() - 1000*60*60*24* x ).toISOString() ).substring(0,10);
-        //     apiUrl.push('https://api.nasa.gov/planetary/apod?hd=True&date=' + date + '&api_key=DRQGKkFd4I0cAg3uPQJHTAtd9BUjAGCDlDvZFNsB');
-        // }
-        // //console.log("first loop complete")
-        // for (var y = 0; y < apiUrl.length; y++){
-        //     $http.get( apiUrl[y] ).then(function(returnedData){
-        //         $scope.returnedDataArr.push(returnedData.data);
-        //     });
-        // }
-
         $scope.returnedDataArr = photoFactory.getNasaPhotos();
-        //console.log(test);
-        console.log("wieufhweiuwhieufhwiuefhw");
-        console.log($scope.returnedDataArr);
     }();
-    //$scope.getPhotos();
 
-//--------------------CREATE ARRAY WITH USER FAVORITE URLS-------------------
+//--------------CREATE ARRAY WITH USER FAVORITE URLS-------------
     $scope.getFavUrls = function(){
         // console.log("got the favs");
         // console.log("rootScope.user = ",$rootScope.user);
