@@ -37,3 +37,9 @@ angular
 		$mdThemingProvider.theme('default')
 		.dark();
 });
+
+angular
+	.module('app')
+    .config(['$locationProvider', function($locationProvider) {
+		$locationProvider.hashPrefix('');
+}]);
