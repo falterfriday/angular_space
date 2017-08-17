@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
 	app = express();
 app.use(bodyparser.json());
 app.use(express.static(path.join(root, 'client')));
+/*app.use(express.static(path.join(root, 'node_modules')));*/
 app.use(express.static(path.join(root, 'bower_components')));
 require('./server/config/mongoose.js');
 require('./server/config/routes.js')(app);
