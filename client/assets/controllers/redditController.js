@@ -4,7 +4,7 @@ angular
 
 redditController.$inject = [
                     'userFactory',
-                    //'photoFactory',
+                    'photoFactory',
                     '$scope',
                     '$rootScope',
                     '$location',
@@ -17,7 +17,7 @@ redditController.$inject = [
 
 function redditController(
                     userFactory,
-                    //photoFactory,
+                    photoFactory,
                     $scope,
                     $rootScope,
                     $location,
@@ -29,56 +29,39 @@ function redditController(
                     $mdDialog
                         ){
 
-//------------------------GRAB 25 MOST RECENT POSTS ON R/SPACEPORN------------------------
+    //Grab the 25 latest photos from reddit
     $scope.getPhotos = function(){
-        $http.get('https://www.reddit.com/r/spaceporn/.json?').then(function(returnedData){
-            $scope.photos = [];
-            for (var x = 0; x <= 24; x++){
-                $scope.photos.push(returnedData.data.data.children[x]);
-            }
-            // console.log($scope.photos);
-        });
-    };
-    $scope.getPhotos();
+        $scope.photos = photoFactory.getRedditPhotos();
+    }();
 
     //TODO: get more button or scroll load
     //use https://www.reddit.com/r/spaceporn/.json?&count=25&after=t3_51imls to get the next 25
 
-//--------------------CREATE ARRAY WITH USER FAVORITE URLS-------------------
+    //CREATE ARRAY WITH USER FAVORITE URLS
     $scope.getFavUrls = function(){
-        // console.log("get the favs");
-        // console.log("rootScope.user = ",$rootScope.user);
         userFactory.getFavUrls($rootScope.user, function(returnedData){
             $scope.userFavUrls = returnedData;
-            // console.log("controller returnedData = ", returnedData);
         });
-    };
-    $scope.getFavUrls();
-//-----------------------ADD FAV WHEN HEART IS CLICKED-----------------------
+    }();
+
+    //ADD FAV WHEN HEART IS CLICKED
     $scope.addFavorite = function(photoInfo){
         $scope.favorite = photoInfo.data;
-        // console.log("photoInfo = ", photoInfo.data);
-        // console.log("user = ", $rootScope.user);
         $scope.favorite.userId = $rootScope.user.id;
-        // console.log("favorite = ", $scope.favorite);
         userFactory.addRedditFavorite($scope.favorite, function(returnedData){
-            // console.log(returnedData);
             $scope.getFavUrls();
         });
     };
 
-//-------------------REMOVE FAV WHEN DELETE IS CLICKED-------------------
+    //REMOVE FAV WHEN DELETE IS CLICKED
     $scope.deleteFavorite = function(favorite){
         favorite = {'url':favorite};
-        // console.log("click!",favorite);
         userFactory.deleteFavorite(favorite, function(returnedData){
-            // console.log("made it back!");
             $scope.getFavUrls();
         });
     };
-//---------------------------OPEN PHOTO DIALOG---------------------------
+    //OPEN PHOTO DIALOG
     $scope.showPhoto = function(ev, clickedPhoto, $scope){
-        // console.log("clicked photo content = ", clickedPhoto);
         $mdDialog.show({
             controller: photoController,
             templateUrl: '/partials/redditPhotoPartial.html',
@@ -88,8 +71,6 @@ function redditController(
             fullscreen:false
         });
         function photoController($scope, $rootScope, $mdDialog){
-            // $scope.getFavUrls = $scope.$parent.$parent.getFavUrls();
-            // console.log("parent favs = ",$scope.$scope);
             $scope.userLoggedIn = $rootScope.userLoggedIn;
             $scope.clickedPhoto = clickedPhoto;
 
@@ -103,10 +84,8 @@ function redditController(
                 $mdDialog.hide(answer);
             };
             $scope.getFavUrls1 = function(){
-                // console.log("get the favs");
                 userFactory.getFavUrls($scope.$parent.user, function(returnedData){
                     $scope.userFavUrls = returnedData;
-                    // console.log("controller returnedData = ", returnedData);
                 });
             };
             $scope.getFavUrls1();
@@ -115,7 +94,6 @@ function redditController(
                 $scope.favorite = photoInfo.data;
                 $scope.favorite.userId = $rootScope.user.id;
                 userFactory.addRedditFavorite($scope.favorite, function(returnedData){
-                    // console.log(returnedData);
                     $scope.getFavUrls1();
                 });
             };
@@ -123,14 +101,13 @@ function redditController(
             $scope.deleteFavorite1 = function(favorite){
                 favorite = {'url':favorite};
                 userFactory.deleteFavorite(favorite, function(returnedData){
-                    // console.log("made it back!");
                     $scope.getFavUrls1();
                 });
             };
         }
     };
 
-//---------------------------DROPDOWN MENU---------------------------
+    //DROPDOWN MENU
     var originatorEv;
     $scope.openMenu = function($mdOpenMenu, ev) {
     originatorEv = ev;
