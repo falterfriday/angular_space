@@ -4,13 +4,14 @@
 || Owner Name: Patrick A. Todd						||
 || Email: patrick.a.todd@gmail.com					||
 || Profile: https://www.github.com/falterfriday		||
-|| Version: 1.1										||
+|| Version: 1.5										||
 || Description: Never Stop Looking Up				||
 ======================================================
 -->
 <html lang="en">
 <head>
 	<title>Leaving Home</title>
+	<base href='/'> 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="angular/angular.min.js"></script>
 	<script src="angular-route/angular-route.min.js"></script>
@@ -37,10 +38,8 @@
 		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
 		ga('create', 'UA-86098597-1', 'auto');
 		ga('send', 'pageview');
-
 	</script>
 </head>
 <body ng-app="app" ng-controller="mainController">
@@ -72,17 +71,17 @@
 				<md-content layout-margin="">
 					<ul>
 						<li>
-							<md-button class="md-icon-button" ng-click="toggleLeft()" ng-href="#/">
+							<md-button class="md-icon-button" ng-click="toggleLeft()" ng-href="/">
 								<md-icon class="material-icons" ng-style="{color: 'white'}" aria-label="home">home</md-icon>
 							</md-button>
-							<a ng-click="toggleLeft()" ng-href="#/">Home</a>
+							<a ng-click="toggleLeft()" ng-href="/">Home</a>
 						</li>
 						<hr>
 						<li ng-if="userLoggedIn == true">
-							<md-button class="md-icon-button" ng-href="#/profile/{{user.id}}" ng-click="toggleLeft()">
+							<md-button class="md-icon-button" ng-href="/profile/{{user.id}}" ng-click="toggleLeft()">
 								<md-icon class="material-icons" ng-style="{color: 'lightblue'}" aria-label="profile">account_box</md-icon>
 							</md-button>
-							<a ng-href="#/profile/{{user.id}}" ng-click="toggleLeft()">Profile</a>
+							<a ng-href="/profile/{{user.id}}" ng-click="toggleLeft()">Profile</a>
 						</li>
 						<li ng-if="userLoggedIn == false">
 							<md-button class="md-icon-button" ng-click="showLoginDialog($event)">
@@ -92,16 +91,16 @@
 						</li>
 						<hr>
 						<!-- <li ng-if="userLoggedIn == true">
-							<md-button class="md-icon-button" ng-href="#/favorites" ng-click="toggleLeft()">
+							<md-button class="md-icon-button" ng-href="/favorites" ng-click="toggleLeft()">
 								<md-icon class="material-icons" ng-style="{color: 'red'}" aria-label="profile">favorite_border</md-icon>
 							</md-button>
-							<a ng-href="#/favorites" ng-click="toggleLeft()">Favorites</a>
+							<a ng-href="/favorites" ng-click="toggleLeft()">Favorites</a>
 						</li>
 						<li ng-if="userLoggedIn == false">
-							<md-button class="md-icon-button" ng-href="#/favorites" ng-click="toggleLeft()">
+							<md-button class="md-icon-button" ng-href="/favorites" ng-click="toggleLeft()">
 								<md-icon class="material-icons" ng-style="{color: 'red'}" aria-label="profile">favorite_border</md-icon>
 							</md-button>
-							<a ng-href="#/favorites" ng-click="toggleLeft()">Favorites</a>
+							<a ng-href="/favorites" ng-click="toggleLeft()">Favorites</a>
 						</li>
 						<hr> -->
 					</ul>
@@ -118,23 +117,4 @@
 	</div>
 </div>
 </body>
-<!-- Copyright (c) 2010-2016 Google, Inc. http://angularjs.org
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE. -->
 </html>
