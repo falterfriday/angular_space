@@ -8,7 +8,7 @@ angular
 	])
 	.config(config);
 
-function config($routeProvider){
+function config($routeProvider, $locationProvider, $mdThemingProvider){
 	$routeProvider
 		.when('/', {
 			templateUrl: 'partials/mainPartial.html',
@@ -29,17 +29,9 @@ function config($routeProvider){
 		.otherwise({
 				redirectTo: '/'
 		});
+
+	$locationProvider.hashPrefix('');
+
+	$mdThemingProvider.theme('default').dark();
+	
 }
-
-angular
-	.module('app')
-	.config(function($mdThemingProvider) {
-		$mdThemingProvider.theme('default')
-		.dark();
-});
-
-angular
-	.module('app')
-    .config(['$locationProvider', function($locationProvider) {
-		$locationProvider.hashPrefix('');
-}]);
