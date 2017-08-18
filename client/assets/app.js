@@ -27,11 +27,10 @@ function config($routeProvider, $locationProvider, $mdThemingProvider){
 			controller: 'profileController'
 		})
 		.otherwise({
-				redirectTo: '/'
+			redirectTo: '/'
 		});
 
-	$locationProvider.hashPrefix('');
+	$locationProvider.html5Mode(true);
 
 	$mdThemingProvider.theme('default').dark();
-	
 }
