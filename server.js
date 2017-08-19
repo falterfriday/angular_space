@@ -16,6 +16,8 @@ app.listen(port, function(){
 	console.log(`running on port ${port}`);
 });
 
+
+//EXPERIMENTAL
 var ignoredPaths = ['/nasa', '/reddit', '/profile/:id'];
 
 app.all('/*', function(req, res, next) {
@@ -31,3 +33,26 @@ function startsWith(string, array) {
       return true;
   return false;
 }
+
+
+var schedule = require('node-schedule');
+var rule = new schedule.RecurrenceRule();
+rule.second = 10;
+var test = schedule.scheduleJob(rule, function(){
+	getRedditPhotos();
+});
+
+var request = require('request');
+
+
+
+function getRedditPhotos(){
+	request('http://www.google.com', function(error, response, body){
+		if(!error && response.statusCode == 200){
+			//console.log(body)
+			return body;
+		}
+	})
+}
+
+
