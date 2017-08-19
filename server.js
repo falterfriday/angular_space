@@ -37,20 +37,29 @@ function startsWith(string, array) {
 
 var schedule = require('node-schedule');
 var rule = new schedule.RecurrenceRule();
-rule.second = 10;
+rule.hour = 10;
 var test = schedule.scheduleJob(rule, function(){
-	getRedditPhotos();
+	request(redditApiUrl, function(error, response, body){
+		if(!error && response.statusCode == 200){
+			const redditResponse = JSON.parse(body);
+			console.log(redditResponse);
+		} else{
+			console.log("Got an error: ", error, ", status code: ", response.statusCode)
+		}
+	})
 });
 
-var request = require('request');
+const request = require('request');
 
-
+const redditApiUrl = 'https://www.reddit.com/r/spaceporn/.json?'
 
 function getRedditPhotos(){
-	request('http://www.google.com', function(error, response, body){
+	request(redditApiUrl, function(error, response, body){
 		if(!error && response.statusCode == 200){
-			//console.log(body)
-			return body;
+			const redditResponse = JSON.parse(body);
+			return redditResponse;
+		} else{
+			console.log("Got an error: ", error, ", status code: ", response.statusCode)
 		}
 	})
 }
