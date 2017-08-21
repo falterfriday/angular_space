@@ -11,6 +11,8 @@ app.use(express.static(path.join(root, 'bower_components')));
 
 require('./server/config/mongoose.js');
 require('./server/config/routes.js')(app);
+require('./server/controllers/redditPhotos.js');
+require('./server/controllers/nasaPhotos.js');
 
 app.listen(port, function(){
 	console.log(`running on port ${port}`);
