@@ -11,8 +11,8 @@ app.use(express.static(path.join(root, 'bower_components')));
 
 require('./server/config/mongoose.js');
 require('./server/config/routes.js')(app);
-require('./server/controllers/redditPhotos.js');
-require('./server/controllers/nasaPhotos.js');
+var redditController = require('./server/controllers/redditPhotos.js');
+var nasaController = require('./server/controllers/nasaPhotos.js');
 
 app.listen(port, function(){
 	console.log(`running on port ${port}`);
@@ -36,34 +36,13 @@ function startsWith(string, array) {
   return false;
 }
 
-
+const request = require('request');
 var schedule = require('node-schedule');
 var rule = new schedule.RecurrenceRule();
-rule.hour = 10;
-var test = schedule.scheduleJob(rule, function(){
-	request(redditApiUrl, function(error, response, body){
-		if(!error && response.statusCode == 200){
-			const redditResponse = JSON.parse(body);
-			console.log(redditResponse);
-		} else{
-			console.log("Got an error: ", error, ", status code: ", response.statusCode)
-		}
-	})
+rule.second = 10;
+
+var job = schedule.scheduleJob(rule, function(){
+	var test = require('./server/controllers/nasaPhotos.js');
 });
 
-const request = require('request');
-
 const redditApiUrl = 'https://www.reddit.com/r/spaceporn/.json?'
-
-function getRedditPhotos(){
-	request(redditApiUrl, function(error, response, body){
-		if(!error && response.statusCode == 200){
-			const redditResponse = JSON.parse(body);
-			return redditResponse;
-		} else{
-			console.log("Got an error: ", error, ", status code: ", response.statusCode)
-		}
-	})
-}
-
-
