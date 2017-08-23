@@ -20,6 +20,7 @@ function NasaPhotosController(){
             }
         })
     }
+    console.log("I'm in the nasaPhotos controller")
     return returnedDataArr;
 }
 module.exports = new NasaPhotosController();
