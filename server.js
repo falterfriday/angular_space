@@ -11,8 +11,8 @@ app.use(express.static(path.join(root, 'bower_components')));
 
 require('./server/config/mongoose.js');
 require('./server/config/routes.js')(app);
-var redditController = require('./server/controllers/redditPhotos.js');
-var nasaController = require('./server/controllers/nasaPhotos.js');
+const redditController = require('./server/controllers/redditPhotos.js');
+const nasaController = require('./server/controllers/nasaPhotos.js');
 
 app.listen(port, function(){
 	console.log(`running on port ${port}`);
@@ -36,13 +36,14 @@ function startsWith(string, array) {
   return false;
 }
 
+//SCHEDULE ACTION TO EXECUTE EVERY HOUR
 const request = require('request');
 var schedule = require('node-schedule');
 var rule = new schedule.RecurrenceRule();
 rule.second = 10;
 
+//JOB EXECUTES API CALLS TO REDDIT AND NASA
 var job = schedule.scheduleJob(rule, function(){
-	var test = require('./server/controllers/nasaPhotos.js');
+	const redditController = require('./server/controllers/redditPhotos.js');
+	const nasaController = require('./server/controllers/nasaPhotos.js');
 });
-
-const redditApiUrl = 'https://www.reddit.com/r/spaceporn/.json?'
