@@ -1,8 +1,6 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-//need to pull the userID into favorite
-// query favorites with ID and see if the URL already exists
 var FavoriteSchema = new mongoose.Schema({
   url: {
     type: String,
@@ -21,4 +19,4 @@ var FavoriteSchema = new mongoose.Schema({
   }
 }, {timestamps: true});
 
-var Favorite = mongoose.model('Favorite', FavoriteSchema);
+const Favorite = mongoose.model('Favorite', FavoriteSchema);
