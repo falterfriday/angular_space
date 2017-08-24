@@ -11,6 +11,7 @@ app.use(express.static(path.join(root, 'bower_components')));
 
 require('./server/config/mongoose.js');
 require('./server/config/routes.js')(app);
+
 const redditController = require('./server/controllers/redditPhotos.js');
 const nasaController = require('./server/controllers/nasaPhotos.js');
 
@@ -18,6 +19,17 @@ app.listen(port, function(){
 	console.log(`running on port ${port}`);
 });
 
+//SCHEDULE ACTION TO EXECUTE EVERY HOUR
+const request = require('request');
+var schedule = require('node-schedule');
+var rule = new schedule.RecurrenceRule();
+rule.second = 10;
+
+//JOB EXECUTES API CALLS TO REDDIT AND NASA
+var job = schedule.scheduleJob(rule, function(){
+	redditController.getRedditPhotos();
+	//nasaController.getNasaPhotos();
+});
 
 //EXPERIMENTAL
 var ignoredPaths = ['/nasa', '/reddit', '/profile/:id'];
@@ -35,15 +47,3 @@ function startsWith(string, array) {
       return true;
   return false;
 }
-
-//SCHEDULE ACTION TO EXECUTE EVERY HOUR
-const request = require('request');
-var schedule = require('node-schedule');
-var rule = new schedule.RecurrenceRule();
-rule.second = 10;
-
-//JOB EXECUTES API CALLS TO REDDIT AND NASA
-var job = schedule.scheduleJob(rule, function(){
-	const redditController = require('./server/controllers/redditPhotos.js');
-	const nasaController = require('./server/controllers/nasaPhotos.js');
-});
