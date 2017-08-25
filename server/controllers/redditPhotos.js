@@ -1,6 +1,7 @@
-var mongoose = require('mongoose');
-var request = require('request');
-var photoCleaner = require("../models/photo.js")
+const mongoose = require('mongoose');
+const request = require('request');
+const photoCleaner = require("../models/photo.js");
+const Photo = mongoose.model('Photo')
 
 const redditApiUrl = 'https://www.reddit.com/r/spaceporn/.json?';
 
@@ -22,6 +23,22 @@ module.exports = {
         //return returnedDataArr
         photoCleaner.redditPhoto(returnedDataArr);
     }
+};
+
+function PhotoController(){
+    this.addPhoto = function(req,res){
+        let photo = Photo({
+            url:returnedDataArr.children.data.url,
+            description:returnedDataArr.children.data.title
+        });
+        photo.save(function(err){
+            if(err){
+                res.json(err);
+            } else {
+                res.json(photo)
+            }
+        });
+    }
 }
 
-//module.exports = new getRedditPhotos();
+module.exports = new PhotoController();
